@@ -4,7 +4,7 @@ import Logo from '../components/ui/Logo'
 
 export default function Home() {
   return (
-    <main className="h-screen flex items-center">
+    <main className="h-screen flex items-center justify-center">
       <MetaHead title="Artpay Login" />
       <section className="flex flex-col items-center pt-30 text-center px-10 text-gray-700">
         <div className="mb-4">
