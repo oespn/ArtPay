@@ -13,6 +13,9 @@ module.exports = {
       maxHeight: {
         150: '37.5rem', // 600px
       },
+      minHeight: {
+        '90vh': '90vh',
+      },
     },
   },
   plugins: [],
