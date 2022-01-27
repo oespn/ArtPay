@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       colors: {
         primary: '#6366F1',
+        darky: '#475569',
+        lightBlue: '#C7D2FD',
       },
       maxHeight: {
         150: '37.5rem', // 600px
