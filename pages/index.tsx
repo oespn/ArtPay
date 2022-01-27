@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import MetaHead from '../components/common/Layout/MetaHead'
 import Logo from '../components/ui/Logo'
 
 export default function Home() {
+  const router = useRouter()
   return (
     <main className="h-screen flex items-center justify-center">
       <MetaHead title="Artpay Login" />
@@ -28,7 +30,10 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col items-center mt-5 gap-4">
-          <button className="flex bg-primary  px-5 py-2 text-white gap-3 items-center rounded-md font-medium">
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="flex bg-primary hover:bg-primary/90  px-5 py-2 text-white gap-3 items-center rounded-md font-medium"
+          >
             <Image
               src="/images/logo-near.svg"
               alt="Logo Near"
