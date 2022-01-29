@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+select,
+textarea,
 input {
-  -webkit-appearance: none;
   @apply outline-primary;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
