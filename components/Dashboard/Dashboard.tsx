@@ -9,6 +9,7 @@ import { BiPlusCircle } from 'react-icons/bi'
 import { MdShowChart } from 'react-icons/md'
 import { AiOutlineEllipsis } from 'react-icons/ai'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Dashboard = () => {
   return (
@@ -25,14 +26,16 @@ const Dashboard = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-between mt-4 items-center">
+      <div className="flex justify-between mt-4 items-center gap-1">
         <span>Lock the $ before you start</span>{' '}
-        <button className="bg-primary rounded-sm text-white px-4 py-1 text-lg font-semibold flex gap-2 items-center">
-          New Job{' '}
-          <span className="text-xl">
-            <BiPlusCircle />
-          </span>
-        </button>
+        <Link href="/new-quote">
+          <a className="bg-primary rounded-sm text-white px-3 py-1 text-lg font-semibold flex gap-1 items-center">
+            New Quote
+            <span className="text-xl">
+              <BiPlusCircle />
+            </span>
+          </a>
+        </Link>
       </div>
 
       <div className="mb-2">
