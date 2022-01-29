@@ -1,6 +1,15 @@
 import { HiOutlineSelector } from 'react-icons/hi'
+import { useForm } from 'react-hook-form'
 
 const NewQuote = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+  const onSubmit = (data) => console.log(data)
+
   return (
     <section className="px-5 mt-3 text-darky">
       <h2 className="text-2xl font-bold mb-5">New Quote</h2>
@@ -23,19 +32,23 @@ const NewQuote = () => {
 
       <div>
         <h3 className="text-xl font-medium mb-5">What are you making?</h3>
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label className="flex flex-col mb-5">
             <span className="font-medium mb-2">Project Title</span>
             <input
               type="text"
               className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
+              {...register('projectTitle')}
             />
           </label>
 
           <label className="flex flex-col mb-5">
             <span className="font-medium mb-2">Type</span>
             <div className="relative w-full">
-              <select className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full">
+              <select
+                {...register('projectType')}
+                className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full"
+              >
                 <option value="">Custom Artwork</option>
                 <option value="">Another option</option>
                 <option value="">Yeah, another option</option>
@@ -49,6 +62,7 @@ const NewQuote = () => {
             <textarea
               rows={3}
               className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
+              {...register('projectDescription')}
             ></textarea>
           </label>
 
