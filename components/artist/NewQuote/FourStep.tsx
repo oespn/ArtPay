@@ -1,10 +1,17 @@
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { HiOutlineSelector } from 'react-icons/hi'
 import { useWizard } from 'react-use-wizard'
+import QuoteSteps from './QuoteSteps'
 
-const FourStepQuote = () => {
+const FourStepQuote = ({
+  register,
+}: {
+  register: UseFormRegister<FieldValues>
+}) => {
   const { handleStep, previousStep, nextStep } = useWizard()
   return (
     <div>
+      <QuoteSteps />
       <h3 className="text-xl font-medium mb-5">Review Requirements</h3>
 
       <label className="flex flex-col mb-5">

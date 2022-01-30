@@ -1,10 +1,18 @@
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { HiOutlineSelector } from 'react-icons/hi'
 import { useWizard } from 'react-use-wizard'
+import QuoteSteps from './QuoteSteps'
 
-const FirstStepQuote = ({ register }) => {
-  const { handleStep, previousStep, nextStep } = useWizard()
+const FirstStepQuote = ({
+  register,
+}: {
+  register: UseFormRegister<FieldValues>
+}) => {
+  const { activeStep, previousStep, nextStep } = useWizard()
   return (
     <div>
+      <QuoteSteps />
+
       <h3 className="text-xl font-medium mb-5">What are you making?</h3>
 
       <label className="flex flex-col mb-5">
@@ -49,7 +57,7 @@ const FirstStepQuote = ({ register }) => {
           Cancel
         </button>
         <button
-          type="submit"
+          onClick={() => nextStep()}
           className="px-3 rounded-sm py-1 bg-primary text-white font-medium"
         >
           Next Step
