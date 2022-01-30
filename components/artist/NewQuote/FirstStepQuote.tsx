@@ -1,7 +1,7 @@
 import { HiOutlineSelector } from 'react-icons/hi'
 import { useWizard } from 'react-use-wizard'
 
-const FirstStepQuote = () => {
+const FirstStepQuote = ({ register }) => {
   const { handleStep, previousStep, nextStep } = useWizard()
   return (
     <div>
@@ -10,6 +10,7 @@ const FirstStepQuote = () => {
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Project Title</span>
         <input
+          {...register('projectName', { required: true })}
           type="text"
           className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
         />
@@ -18,10 +19,13 @@ const FirstStepQuote = () => {
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Type</span>
         <div className="relative w-full">
-          <select className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full">
-            <option value="">Custom Artwork</option>
-            <option value="">Another option</option>
-            <option value="">Yeah, another option</option>
+          <select
+            {...register('projectType', { required: true })}
+            className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full"
+          >
+            <option value="one">Custom Artwork</option>
+            <option value="two">Another option</option>
+            <option value="three">Yeah, another option</option>
           </select>
           <HiOutlineSelector className="absolute right-2 bottom-2 text-2xl" />
         </div>
@@ -30,6 +34,7 @@ const FirstStepQuote = () => {
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Description</span>
         <textarea
+          {...register('projectDescription', { required: true })}
           rows={3}
           className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
         ></textarea>
@@ -44,7 +49,7 @@ const FirstStepQuote = () => {
           Cancel
         </button>
         <button
-          onClick={() => nextStep()}
+          type="submit"
           className="px-3 rounded-sm py-1 bg-primary text-white font-medium"
         >
           Next Step

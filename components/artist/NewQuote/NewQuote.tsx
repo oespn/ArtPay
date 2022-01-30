@@ -36,10 +36,10 @@ const NewQuote = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard>
-          <FirstStepQuote />
-          <SecondStepQuote />
-          <ThirdStepQuote />
-          <FourStepQuote />
+          <FirstStepQuote register={register} />
+          <SecondStepQuote register={register} />
+          <ThirdStepQuote register={register} />
+          <FourStepQuote register={register} />
         </Wizard>
       </form>
     </section>
