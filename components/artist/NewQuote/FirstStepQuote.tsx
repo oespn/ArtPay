@@ -1,12 +1,9 @@
 import { HiOutlineSelector } from 'react-icons/hi'
-import { useWizard } from 'react-use-wizard'
+import NewQuoteButtonSteps from './NewQuoteButtonSteps'
 import { StepProps } from './NewQuoteTypes'
 import QuoteSteps from './QuoteSteps'
 
-type Props = {}
-
 const FirstStepQuote = ({ register, trigger }: StepProps) => {
-  const { activeStep, previousStep, nextStep } = useWizard()
   return (
     <div>
       <QuoteSteps />
@@ -46,27 +43,7 @@ const FirstStepQuote = ({ register, trigger }: StepProps) => {
         ></textarea>
       </label>
 
-      <div className="flex justify-end gap-4">
-        <button
-          type="button"
-          className="px-3 border border-gray-400 rounded-sm py-1 font-medium"
-          onClick={() => window.history.back()}
-        >
-          Cancel
-        </button>
-        <button
-          onClick={async () => {
-            const isValid = await trigger()
-
-            if (isValid) {
-              nextStep()
-            }
-          }}
-          className="px-3 rounded-sm py-1 bg-primary text-white font-medium"
-        >
-          Next Step
-        </button>
-      </div>
+      <NewQuoteButtonSteps trigger={trigger} />
     </div>
   )
 }
