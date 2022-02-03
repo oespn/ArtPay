@@ -9,6 +9,7 @@ import ThirdStepQuote from './ThirdStepQuote'
 const NewQuote = () => {
   const {
     register,
+    trigger,
     handleSubmit,
     watch,
     formState: { errors },
@@ -21,8 +22,8 @@ const NewQuote = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard>
-          <FirstStepQuote register={register} />
-          <SecondStepQuote register={register} />
+          <FirstStepQuote register={register} trigger={trigger} />
+          <SecondStepQuote register={register} trigger={trigger} />
           <ThirdStepQuote register={register} />
           <FourStepQuote register={register} />
         </Wizard>

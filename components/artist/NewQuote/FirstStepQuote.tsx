@@ -1,13 +1,11 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { HiOutlineSelector } from 'react-icons/hi'
 import { useWizard } from 'react-use-wizard'
+import { StepProps } from './NewQuoteTypes'
 import QuoteSteps from './QuoteSteps'
 
-const FirstStepQuote = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>
-}) => {
+type Props = {}
+
+const FirstStepQuote = ({ register, trigger }: StepProps) => {
   const { activeStep, previousStep, nextStep } = useWizard()
   return (
     <div>
@@ -57,7 +55,13 @@ const FirstStepQuote = ({
           Cancel
         </button>
         <button
-          onClick={() => nextStep()}
+          onClick={async () => {
+            const isValid = await trigger()
+
+            if (isValid) {
+              nextStep()
+            }
+          }}
           className="px-3 rounded-sm py-1 bg-primary text-white font-medium"
         >
           Next Step
