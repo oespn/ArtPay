@@ -1,5 +1,6 @@
 export const legalData = [
   {
+    id: 1,
     name: 'Customer - no restrictions',
     attribution: 'Attribution-NoDerivs 4.0 Generic',
     image: '/images/license.png',
@@ -16,6 +17,7 @@ export const legalData = [
       'Share — copy and redistribute the material in any medium or format for any purpose, even commercially.',
   },
   {
+    id: 2,
     name: 'Another License - with restrictions',
     attribution: 'Test license lorem ipsum',
     image: '/images/license.png',
