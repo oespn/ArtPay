@@ -1,6 +1,12 @@
-import { FieldValues, UseFormRegister, UseFormTrigger } from 'react-hook-form'
+import {
+  FieldValues,
+  UseFormRegister,
+  UseFormTrigger,
+  UseFormWatch,
+} from 'react-hook-form'
 
 export type StepProps = {
-  register: UseFormRegister<FieldValues>
-  trigger: UseFormTrigger<FieldValues>
+  register: UseFormRegister<any>
+  trigger: UseFormTrigger<any>
+  watch?: UseFormWatch<any>
 }

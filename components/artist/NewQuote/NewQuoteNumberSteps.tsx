@@ -1,6 +1,6 @@
 import { useWizard } from 'react-use-wizard'
 
-const QuoteSteps = () => {
+const NewQuoteNumberSteps = () => {
   const { activeStep } = useWizard()
 
   return (
@@ -9,6 +9,7 @@ const QuoteSteps = () => {
       {[...Array(4)].map((_v, index) => {
         return (
           <button
+            key={index}
             className={
               (activeStep == index ? 'bg-primary' : 'bg-gray-300') +
               ' rounded-full bg-primary text-white text-sm w-9 h-9 font-medium relative'
@@ -22,4 +23,4 @@ const QuoteSteps = () => {
   )
 }
 
-export default QuoteSteps
+export default NewQuoteNumberSteps

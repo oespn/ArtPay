@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { Wizard } from 'react-use-wizard'
-import FirstStepQuote from './FirstStepQuote'
-import FourStepQuote from './FourStep'
-import QuoteSteps from './QuoteSteps'
-import SecondStepQuote from './SecondStepQuote'
-import ThirdStepQuote from './ThirdStepQuote'
+import FirstStepQuote from './Steps/FirstStepQuote'
+import FourStepQuote from './Steps/FourStep'
+import SecondStepQuote from './Steps/SecondStepQuote'
+import ThirdStepQuote from './Steps/ThirdStepQuote'
 
 const NewQuote = () => {
   const {
@@ -13,7 +12,11 @@ const NewQuote = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      legalAssignment: 1,
+    },
+  })
   const onSubmit = (data) => console.log(data)
 
   return (
@@ -23,9 +26,13 @@ const NewQuote = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard>
           <FirstStepQuote register={register} trigger={trigger} />
-          <SecondStepQuote register={register} trigger={trigger} />
-          <ThirdStepQuote register={register} />
-          <FourStepQuote register={register} />
+          <SecondStepQuote
+            register={register}
+            trigger={trigger}
+            watch={watch}
+          />
+          <ThirdStepQuote register={register} trigger={trigger} />
+          <FourStepQuote register={register} trigger={trigger} />
         </Wizard>
       </form>
     </section>

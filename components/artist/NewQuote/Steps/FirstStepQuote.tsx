@@ -1,7 +1,7 @@
 import { HiOutlineSelector } from 'react-icons/hi'
-import NewQuoteButtonSteps from './NewQuoteButtonSteps'
-import { StepProps } from './NewQuoteTypes'
-import QuoteSteps from './QuoteSteps'
+import NewQuoteButtonSteps from '../NewQuoteButtonSteps'
+import { StepProps } from '../NewQuoteTypes'
+import QuoteSteps from '../NewQuoteNumberSteps'
 
 const FirstStepQuote = ({ register, trigger }: StepProps) => {
   return (
