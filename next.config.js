@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: true, // recommended by Next.js core
+  images: {
+    domains: ['i.creativecommons.org'],
+  },
 }

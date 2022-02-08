@@ -37,23 +37,30 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
           className={(item.id == watchLegal ? 'block' : 'hidden') + ' mb-10'}
           key={item.id}
         >
-          <p>Attribution-NoDerivs 4.0 Generic</p>
-          <div className="mt-2">
-            <Image
-              src={item.image}
-              width={106}
-              height={40}
-              alt="License image"
-              className="object-cover rounded-sm"
-            />
-          </div>
+          <p className="font-bold">{item.attribution}</p>
 
-          <div>
+          {item.image && (
+            <div className="mt-2">
+              <Image
+                src={item.image}
+                width={106}
+                height={40}
+                alt="License image"
+                className="object-cover rounded-md border border-black"
+              />
+            </div>
+          )}
+
+          <div className="mt-2">
             {item.conditions.map((condition) => (
-              <p key={condition.value} className="flex items-center gap-1">
+              <p
+                key={condition.key}
+                className="flex items-center gap-1 mb-3 leading-5"
+              >
                 <span>
                   <GoCheck className="text-green-600 text-xl" />
                 </span>
+                <span className="font-semibold mr-1">{condition.key}:</span>
                 {condition.value}
               </p>
             ))}
