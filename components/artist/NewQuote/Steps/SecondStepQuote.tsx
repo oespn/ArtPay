@@ -81,7 +81,7 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
         </div>
       ))}
 
-      <div className="mb-10 flex justify-between">
+      <div className="mb-5 flex justify-between">
         <p>Composite or derivative work? </p>
         <div>
           <Switch
@@ -94,6 +94,35 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
           </Switch>
         </div>
       </div>
+
+      {isDerivateWork && (
+        <div className="overflow-hidden mb-7">
+          <div className="flex gap-2">
+            <input
+              {...register('attrParty', { required: true })}
+              className="w-7/12 shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
+              placeholder="Attribute party #1"
+            />
+            <label className="flex items-center w-5/12 gap-2" htmlFor="royalty">
+              <span className="whitespace-pre">% royalty</span>
+              <input
+                {...register('royalty', { required: true })}
+                className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
+                type="text"
+                placeholder="none"
+              />
+            </label>
+          </div>
+          <div className="w-full mt-2">
+            <input
+              {...register('attPartyAddress', { required: true })}
+              type="text"
+              className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white w-full"
+              placeholder="Attribute party #1 wallet address"
+            />
+          </div>
+        </div>
+      )}
 
       <NewQuoteButtonSteps trigger={trigger} />
     </div>

@@ -8,7 +8,7 @@ const NewQuoteButtonSteps = ({
 }) => {
   const { activeStep, previousStep, nextStep } = useWizard()
   return (
-    <div className="flex justify-end gap-4">
+    <div className="flex justify-end gap-4 pb-10">
       <button
         type="button"
         className="px-3 border border-gray-400 rounded-sm py-1 font-medium"
