@@ -10,32 +10,23 @@ const ThirdStepQuote = ({ register }: StepProps) => {
       <QuoteSteps />
       <h3 className="text-xl font-medium mb-5">Price & costs</h3>
 
-      <label className="flex flex-col mb-5">
-        <span className="font-medium mb-2">Project Title</span>
-        <input
-          type="text"
-          className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
-        />
-      </label>
+      <div className="relative flex justify-end">
+        <select className="w-7/12 shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white">
+          <option value="">USDT</option>
+          <option value="">Another option</option>
+          <option value="">Yeah, another option</option>
+        </select>
+        <HiOutlineSelector className="absolute right-2 bottom-2 text-2xl" />
+      </div>
 
-      <label className="flex flex-col mb-5">
-        <span className="font-medium mb-2">Type</span>
-        <div className="relative w-full">
-          <select className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full">
-            <option value="">Custom Artwork</option>
-            <option value="">Another option</option>
-            <option value="">Yeah, another option</option>
-          </select>
-          <HiOutlineSelector className="absolute right-2 bottom-2 text-2xl" />
+      <label className="flex items-center justify-between mb-5 gap-2 mt-3">
+        <span className="font-medium mb-2 whitespace-pre">Customer price</span>
+        <div className="relative w-5/12">
+          <input
+            className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full text-right"
+            placeholder="$2.500"
+          />
         </div>
-      </label>
-
-      <label className="flex flex-col mb-5">
-        <span className="font-medium mb-2">Description</span>
-        <textarea
-          rows={3}
-          className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
-        ></textarea>
       </label>
 
       <div className="flex justify-end gap-4">
