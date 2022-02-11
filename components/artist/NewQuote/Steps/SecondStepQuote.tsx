@@ -5,9 +5,20 @@ import { legalData } from '../legal-data'
 import NewQuoteButtonSteps from '../NewQuoteButtonSteps'
 import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
+import { useState } from 'react'
+import { StyledSwitch, StyledThumb } from './SecondStepQuoteStyles'
+
+// Exports
+const Switch = StyledSwitch
+const SwitchThumb = StyledThumb
 
 const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
   const watchLegal = watch('legalAssignment')
+  const [isDerivateWork, setIsDerivateWork] = useState(false)
+
+  const handleSwitch = (value) => {
+    setIsDerivateWork(value)
+  }
 
   return (
     <div>
@@ -69,6 +80,20 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
           <p className="mt-2 text-sm text-gray-500">{item.bottomCopy}</p>
         </div>
       ))}
+
+      <div className="mb-10 flex justify-between">
+        <p>Composite or derivative work? </p>
+        <div>
+          <Switch
+            defaultChecked
+            id="s1"
+            onCheckedChange={handleSwitch}
+            checked={isDerivateWork}
+          >
+            <SwitchThumb />
+          </Switch>
+        </div>
+      </div>
 
       <NewQuoteButtonSteps trigger={trigger} />
     </div>
