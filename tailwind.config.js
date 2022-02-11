@@ -9,6 +9,7 @@ module.exports = {
         primary: '#6366F1',
         darky: '#475569',
         lightBlue: '#C7D2FD',
+        lightGreen: '#EEFCEB',
       },
       maxHeight: {
         150: '37.5rem', // 600px
