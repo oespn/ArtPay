@@ -10,3 +10,7 @@ input {
   -moz-appearance: none;
   appearance: none;
 }
+
+.gradientBlue {
+  background: linear-gradient(182deg, #e4e4ff, #e4ecff);
+}
