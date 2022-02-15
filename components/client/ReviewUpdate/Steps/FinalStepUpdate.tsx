@@ -10,10 +10,10 @@ const Switch = StyledSwitch
 const SwitchThumb = StyledThumb
 
 const FinalStepUpdate = ({ register, trigger }: StepProps) => {
-    const [isDerivateWork, setIsDerivateWork] = useState(false)
+    const [isFinal, setIsFinal] = useState(false)
 
     const handleSwitch = (value) => {
-      setIsDerivateWork(value)
+      setIsFinal(value)
     }
 
   return (
@@ -53,9 +53,9 @@ const FinalStepUpdate = ({ register, trigger }: StepProps) => {
         <div>
           <Switch
             defaultChecked
-            id="s1"
+            id="sFinal"
             onCheckedChange={handleSwitch}
-            checked={isDerivateWork}
+            checked={isFinal}
           >
             <SwitchThumb />
           </Switch>

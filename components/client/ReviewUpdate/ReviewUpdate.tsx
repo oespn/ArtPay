@@ -2,6 +2,9 @@ import { useForm } from 'react-hook-form'
 import { Wizard } from 'react-use-wizard'
 import FirstStepUpdate from './Steps/FirstStepUpdate'
 import FinalStepUpdate from './Steps/FinalStepUpdate'
+import YourDeliverable from './Steps/YourDeliverable'
+import ReceiveQuote from './Steps/ReceiveQuote'
+import FundEscrow from './Steps/FundEscrow'
 //import SecondStepUpdate from './Steps/SecondStepUpdate'
 //import ThirdStepUpdate from './Steps/ThirdStepUpdate'
 
@@ -32,14 +35,16 @@ const ReviewUpdate = () => {
 {/** 
  * ReceiveQuote
  * FundEscrow
- * Update
+ * Update (FirstStepUpdate) - can be issued multiple times
  * Final
- * Your NFT
+ * Your NFT (YourDeliverable)
  */}
 
+          <ReceiveQuote register={register} trigger={trigger} />
+          <FundEscrow register={register} trigger={trigger} />
           <FirstStepUpdate register={register} trigger={trigger} />
           <FinalStepUpdate register={register} trigger={trigger} />
-
+          <YourDeliverable register={register} trigger={trigger} />
           
         </Wizard>
       </form>

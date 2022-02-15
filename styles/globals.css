@@ -15,6 +15,20 @@ input {
   background: linear-gradient(182deg, #e4e4ff, #e4ecff);
 }
 
+.tipBlue {
+  background:rgba(198, 209, 252, 0.61);
+  font-size: smaller;
+}
+
+.tipYellow {
+  background:rgba(252, 250, 198, 0.61);
+  font-size: smaller;
+}
+
+.tipNormal {
+  font-size: smaller;
+}
+
 .deliveryBox {
   height: 100%;
   width:100%;
