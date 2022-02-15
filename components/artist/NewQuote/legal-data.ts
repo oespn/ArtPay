@@ -1,34 +1,16 @@
 export const legalData = [
   {
     id: 1,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 0, 
-    commercial: 0, 
-=======
     type: 0,
     source: 0,
     adaption_share: 0,
     commercial: 0,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'by-nc-nd',
     name: 'CC BY-NC-ND 4.0',
     attribution: 'Attribution-NonCommercial-NoDerivatives 4.0 International',
     image: 'https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png',
     lic_url: 'http://creativecommons.org/licenses/by-nc-nd/4.0/',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-      },
-      {
-        key: 'NC',
-        value: 'Only noncommercial use of your work is permitted',
-      },
-      {
-=======
       {
         key: 'BY',
         value: 'Credit must be given to you, the creator.',
@@ -38,7 +20,6 @@ export const legalData = [
         value: 'Only noncommercial use of your work is permitted',
       },
       {
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
         key: 'ND',
         value: 'No derivatives or adaptations of your work are permitted.',
       },
@@ -48,32 +29,19 @@ export const legalData = [
   },
   {
     id: 2,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 2, 
-    commercial: 0, 
-=======
     type: 0,
     source: 0,
     adaption_share: 2,
     commercial: 0,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'by-nc-sa',
     name: 'CC BY-NC-SA 4.0',
     attribution: 'Attribution-NonCommercial-ShareAlike 4.0 International',
     image: 'https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png',
     lic_url: 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-=======
       {
         key: 'BY',
         value: 'Credit must be given to you, the creator.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
       {
         key: 'NC',
@@ -89,32 +57,19 @@ export const legalData = [
   },
   {
     id: 3,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 1, 
-    commercial: 0, 
-=======
     type: 0,
     source: 0,
     adaption_share: 1,
     commercial: 0,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'by-nc',
     name: 'CC BY-NC 4.0',
     attribution: 'Attribution-NonCommercial 4.0 International',
     image: 'https://i.creativecommons.org/l/by-nc/4.0/88x31.png',
     lic_url: 'http://creativecommons.org/licenses/by-nc/4.0/',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-=======
       {
         key: 'BY',
         value: 'Credit must be given to you, the creator.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
       {
         key: 'NC',
@@ -126,52 +81,15 @@ export const legalData = [
   },
   {
     id: 4,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 0, 
-    commercial: 1, 
-=======
     type: 0,
     source: 0,
     adaption_share: 0,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'by-nd',
     name: 'CC BY-ND 4.0',
     attribution: 'Attribution-NoDerivatives 4.0 International',
     image: 'https://i.creativecommons.org/l/by-nd/4.0/88x31.png',
     lic_url: 'http://creativecommons.org/licenses/by-nd/4.0/',
-<<<<<<< HEAD
-    conditions: [
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-      },
-      {
-        key: 'ND',
-        value: 'No derivatives or adaptations of your work are permitted.',
-      },
-    ],
-    bottomCopy:
-      'This license requires that reusers give credit to the creator. It allows reusers to copy and distribute the material in any medium or format in unadapted form only, even for commercial purposes.',
-  },
-  {
-    id: 5,
-    type: 0, 
-    source: 0,
-    adaption_share: 2, 
-    commercial: 1, 
-    code: 'by-sa',
-    name: 'CC BY-SA 4.0',
-    attribution: 'Attribution-ShareAlike 4.0 International',
-    image: 'https://i.creativecommons.org/l/by-sa/4.0/88x31.png',
-    lic_url: 'http://creativecommons.org/licenses/by-sa/4.0/',
-    conditions: [
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-=======
     conditions: [
       {
         key: 'BY',
@@ -200,7 +118,6 @@ export const legalData = [
       {
         key: 'BY',
         value: 'Credit must be given to you, the creator.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
       {
         key: 'SA',
@@ -212,32 +129,19 @@ export const legalData = [
   },
   {
     id: 6,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 1, 
-    commercial: 1, 
-=======
     type: 0,
     source: 0,
     adaption_share: 1,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'by',
     name: 'CC BY 4.0',
     attribution: 'Attribution 4.0 International',
     image: 'https://i.creativecommons.org/l/by/4.0/88x31.png',
     lic_url: 'http://creativecommons.org/licenses/by/4.0/',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'BY',
-        value: 'Credit must be given to you, the creator.' 
-=======
       {
         key: 'BY',
         value: 'Credit must be given to you, the creator.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
     ],
     bottomCopy:
@@ -245,32 +149,19 @@ export const legalData = [
   },
   {
     id: 7,
-<<<<<<< HEAD
-    type: 0, 
-    source: 0,
-    adaption_share: 0, 
-    commercial: 1, 
-=======
     type: 0,
     source: 0,
     adaption_share: 0,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'cc0',
     name: 'CC0 1.0',
     attribution: 'CC0 1.0 Universal',
     image: 'https://i.creativecommons.org/p/zero/1.0/88x31.png',
     lic_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'CC0',
-        value: 'This work has been marked as dedicated to the public domain.' 
-=======
       {
         key: 'CC0',
         value: 'This work has been marked as dedicated to the public domain.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
     ],
     bottomCopy:
@@ -278,32 +169,19 @@ export const legalData = [
   },
   {
     id: 8,
-<<<<<<< HEAD
-    type: 1, 
-    source: 0,
-    adaption_share: 0, 
-    commercial: 1, 
-=======
     type: 1,
     source: 0,
     adaption_share: 0,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'GPLv3',
     name: 'GPLv3',
     attribution: 'GNU General Public License 3.0',
     image: 'https://i.creativecommons.org/p/zero/1.0/88x31.png',
     lic_url: 'https://www.gnu.org/licenses/gpl-3.0.html',
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'CC0',
-        value: 'This work has been marked as dedicated to the public domain.' 
-=======
       {
         key: 'CC0',
         value: 'This work has been marked as dedicated to the public domain.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
     ],
     bottomCopy:
@@ -311,32 +189,16 @@ export const legalData = [
   },
   {
     id: 9,
-<<<<<<< HEAD
-    type: -1, 
-    source: -1,
-    adaption_share: 0, 
-    commercial: 1, 
-=======
     type: -1,
     source: -1,
     adaption_share: 0,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'exclusive',
     name: 'Exclusive rights of use',
     attribution: 'Exclusive rights of use',
     image: null,
     lic_url: null,
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'REV',
-        value: 'You give up your rights to the work' 
-      },
-      { 
-        key: 'EX',
-        value: 'This work is assigned to the licensee on completion.' 
-=======
       {
         key: 'REV',
         value: 'You give up your rights to the work',
@@ -344,7 +206,6 @@ export const legalData = [
       {
         key: 'EX',
         value: 'This work is assigned to the licensee on completion.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
     ],
     bottomCopy:
@@ -352,32 +213,16 @@ export const legalData = [
   },
   {
     id: 10,
-<<<<<<< HEAD
-    type: -1, 
-    source: -1,
-    adaption_share: 0, 
-    commercial: 1, 
-=======
     type: -1,
     source: -1,
     adaption_share: 0,
     commercial: 1,
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
     code: 'non-exclusive',
     name: 'Non-exclusive rights of use',
     attribution: 'Non-exclusive rights of use',
     image: null,
     lic_url: null,
     conditions: [
-<<<<<<< HEAD
-      { 
-        key: 'RET',
-        value: 'The creator retain rights to the work' 
-      },
-      { 
-        key: 'AUTH',
-        value: 'The creator authorises right to use the work in the manner defined.' 
-=======
       {
         key: 'RET',
         value: 'The creator retain rights to the work',
@@ -386,7 +231,6 @@ export const legalData = [
         key: 'AUTH',
         value:
           'The creator authorises right to use the work in the manner defined.',
->>>>>>> 3a065cb211b6314cf0d8babc4e6e77239d69044c
       },
     ],
     bottomCopy:
