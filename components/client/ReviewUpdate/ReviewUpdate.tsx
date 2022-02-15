@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { Wizard } from 'react-use-wizard'
 import FirstStepUpdate from './Steps/FirstStepUpdate'
+import FinalStepUpdate from './Steps/FinalStepUpdate'
 //import SecondStepUpdate from './Steps/SecondStepUpdate'
 //import ThirdStepUpdate from './Steps/ThirdStepUpdate'
 
@@ -16,6 +17,7 @@ const ReviewUpdate = () => {
       legalAssignment: 1,
     },
   })
+  const pageId = 1; //this.props.id passed in param
   const onSubmit = (data) => console.log(data)
 
   return (
@@ -26,16 +28,19 @@ const ReviewUpdate = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Wizard>
+        <Wizard startIndex={pageId}>
+{/** 
+ * ReceiveQuote
+ * FundEscrow
+ * Update
+ * Final
+ * Your NFT
+ */}
+
           <FirstStepUpdate register={register} trigger={trigger} />
-          {/* 
-       <SecondStepUpdate
-            register={register}
-            trigger={trigger}
-            watch={watch}
-          />
-          <ThirdStepUpdate register={register} trigger={trigger} />
-          */}
+          <FinalStepUpdate register={register} trigger={trigger} />
+
+          
         </Wizard>
       </form>
     </section>

@@ -6,7 +6,7 @@ const NewUpdateNumberSteps = () => {
   return (
     <div className="flex justify-between mb-7 relative">
       <div className="absolute w-full h-px bg-gray-400 top-5" />
-      {[...Array(3)].map((_v, index) => {
+      {[...Array(5)].map((_v, index) => {
         return (
           <button
             key={index}
