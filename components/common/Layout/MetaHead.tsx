@@ -11,6 +11,9 @@ const MetaHead = ({ title }: Props) => {
       <Head>
         <title>{title || 'ArtPay Demo'}</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <link href="https://fonts.googleapis.com/css?family=Inter+Inline" rel="stylesheet"/>
+
       </Head>
     </>
   )
