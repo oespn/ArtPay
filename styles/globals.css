@@ -29,6 +29,11 @@ input {
   font-size: smaller;
 }
 
+.tipWhite {
+  background:white;
+  font-size: smaller;
+}
+
 .deliveryBox {
   height: 100%;
   width:100%;
