@@ -1,4 +1,4 @@
-import DashboardClient from './DashBoardClient'
+import DashboardClient from './DashboardClient'
 import DashboardArtist from './DashboardArtist'
 
 //TODO: Connect Mode switch to side menu isClient for Artist|Client
