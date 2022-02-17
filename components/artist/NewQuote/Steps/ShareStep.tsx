@@ -4,11 +4,7 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import ShareLink from '../ShareLink'
 
-
 const ShareStep = ({ register, trigger }: StepProps) => {
-
-
-
   return (
     <div>
       <QuoteSteps />
@@ -17,44 +13,40 @@ const ShareStep = ({ register, trigger }: StepProps) => {
 
       <label className="flex flex-col mb-5">
         <div className="tipYellow p-3 rounded-sm text-darky">
-            <h3 className="font-bold">Funds will be secured on quote acceptance  🔐</h3>
-            <p>You can transfer to the Eth network later.<br/>
-            Your client will pay upfront into escrow on NEAR </p>
+          <h3 className="font-bold">
+            Funds will be secured on quote acceptance 🔐
+          </h3>
+          <p>
+            You can transfer to the Eth network later.
+            <br />
+            Your client will pay upfront into escrow on NEAR{' '}
+          </p>
         </div>
       </label>
 
-
       <label className="flex flex-col mb-5">
-        <div className="flex justify-between px-5 py-2 deliveryBox" >
-
-    
-
-        </div>
+        <div className="flex justify-between px-5 py-2 deliveryBox"></div>
       </label>
 
       <div className="mb-5">
         <p>Share the quote with your client </p>
         <div>
-        <ShareLink/>
-
+          <ShareLink />
         </div>
-
       </div>
-       
 
       <div className="mt-3 flex justify-end ">
         <button
-            type="button"
-            className="px-3 border border-gray-400 rounded-sm py-1 font-medium"
+          type="button"
+          className="px-3 border border-gray-400 rounded-sm py-1 font-medium"
         >
-            Back
+          Back
         </button>
 
-
-          <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
-            Done
-          </button>
-        </div>
+        <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+          Done
+        </button>
+      </div>
     </div>
   )
 }

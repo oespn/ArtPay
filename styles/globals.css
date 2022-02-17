@@ -16,12 +16,12 @@ input {
 }
 
 .tipBlue {
-  background:rgba(198, 209, 252, 0.61);
+  background: rgba(198, 209, 252, 0.61);
   font-size: smaller;
 }
 
 .tipYellow {
-  background:rgba(252, 250, 198, 0.61);
+  background: rgba(252, 250, 198, 0.61);
   font-size: smaller;
 }
 
@@ -30,14 +30,14 @@ input {
 }
 
 .tipWhite {
-  background:white;
+  background: white;
   font-size: smaller;
 }
 
 .deliveryBox {
   height: 100%;
-  width:100%;
-  border:1px dotted #979797;
+  width: 100%;
+  border: 1px dotted #979797;
   background-color: #eeeeee;
 }
 

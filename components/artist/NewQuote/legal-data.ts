@@ -236,5 +236,4 @@ export const legalData = [
     bottomCopy:
       'By marking the work as non-exclusive, the creator is authorizing use of the work in the defined matter allowed.',
   },
-
 ]
