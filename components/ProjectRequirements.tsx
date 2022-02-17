@@ -1,20 +1,46 @@
 const ProjectRequirements = () => {
 
     return (
-     <div className="bg-lightBlue p-3 rounded-sm text-darky">
-        <h3 className="font-bold">Mint your first NFT for free! 👋 </h3>
-        <p>Experience how our NFTs protect your work. </p>
-        <div className="mt-3 flex justify-end">
-          <button className="flex items-center gap-1 text-primary hover:text-primary/80 font-medium">
-            Show me{' '}
-            <span>
+      <div>  
+        <div className="mb-5 px-2">
 
-            </span>
-          </button>
+            <div className="mb-1">
+            <p className="font-medium">Project</p>
+            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make [ProjectName] for the owner of the accepting wallet address.</p>
+            </div>
+
+            <div className="mb-1">
+            <p className="font-medium">Description</p>
+            <p>[Description]</p>
+            </div>
+
+
+            <div className="mb-1">
+            <p className="font-medium">Legal assignment</p>
+            <p>The Contractor will assign rights according to [C00]</p>
+            </div>
+
+
+            <div className="flex justify-between mb-1">
+            <p className="font-medium">Gas fees</p>
+            <p>[2.50]</p>
+            </div>
+            <div className="flex justify-between mb-1">
+            <p className="font-medium">Our fee</p>
+            <p>[50.00]</p>
+            </div>
+            <div className="flex justify-between">
+            <p className="font-medium">Royalties</p>
+            <p>[50.00]</p>
+            </div>
+            <div className="flex justify-end">
+            <div className="w-6/12 h-px bg-darky my-1" />
+            </div>
+            <p className="text-right">[-177.50]</p>
         </div>
-      </div>
 
-    )
+      </div>
+     )
 
 }
 

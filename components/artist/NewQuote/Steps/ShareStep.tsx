@@ -3,6 +3,7 @@ import { useWizard } from 'react-use-wizard'
 import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import ShareLink from '../ShareLink'
+import ProjectRequirements from '../../../ProjectRequirements'
 
 const ShareStep = ({ register, trigger }: StepProps) => {
   return (
@@ -25,7 +26,11 @@ const ShareStep = ({ register, trigger }: StepProps) => {
       </label>
 
       <label className="flex flex-col mb-5">
-        <div className="flex justify-between px-5 py-2 deliveryBox"></div>
+        <div className="flex justify-between px-5 py-2 deliveryBox">
+
+        <ProjectRequirements/>
+
+        </div>
       </label>
 
       <div className="mb-5">
