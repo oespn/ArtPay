@@ -12,37 +12,40 @@ const YourDeliverable = ({ register, trigger }: StepProps) => {
 
       <label className="flex flex-col mb-5">
         <span className="mb-2">Delivered [date/time]</span>
-        <span className="mb-2">Certified design by <b>[artist.name]</b></span>
+        <span className="mb-2">
+          Certified design by <b>[artist.name]</b>
+        </span>
       </label>
-
 
       <label className="flex flex-col mb-5">
-        <div className="flex justify-between px-5 py-2 deliveryBox" >
-
-            <img 
-                    src='/images/logo.png'
-                    alt="Artwork update"
-                    className="imgFill"
-                />
-
+        <div className="flex justify-between px-5 py-2 deliveryBox">
+          <img
+            src="/images/logo.png"
+            alt="Artwork update"
+            className="imgFill"
+          />
         </div>
       </label>
-      
+
       <div className="tipBlue p-3 rounded-sm text-darky">
         <h3 className="font-bold">Your NFT is now available on NEAR 🚀 </h3>
-        <p>Check it out on these marketplaces <a href="" className="text-primary hover:text-primary/80 font-medium"> here</a> </p>
+        <p>
+          Check it out on these marketplaces
+          <a href="" className="text-primary hover:text-primary/80 font-medium">
+            here
+          </a>
+        </p>
       </div>
-
 
       <div className="p-3 rounded-sm text-darky">
         <h3 className="font-bold">Request minting on Ethereum </h3>
-        <p>Estimated gas fee $220  </p>
+        <p>Estimated gas fee $220 </p>
       </div>
 
       <div className="mt-3 flex justify-end">
-          <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
-            Request
-          </button>
+        <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+          Request
+        </button>
       </div>
     </div>
   )
