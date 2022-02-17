@@ -21,7 +21,7 @@ const NewQuote = () => {
   const onSubmit = (data) => console.log(data)
 
   return (
-    <section className="px-5 mt-3 text-darky">
+    <section className="px-3 mt-3 text-darky">
       <h2 className="text-2xl font-bold mb-5">New Quote</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
