@@ -56,17 +56,19 @@ const ListItem = styled("li", {
 
 const options = ["A", "C"];
 
-const DropDownMenu = () =>
+const DropDownMenu = (isClient: boolean) =>
 {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
-  
+    const [selectedOption, setSelectedOption] = useState("A");
+    
     const toggling = () => setIsOpen(!isOpen);
   
     const onOptionClicked = value => () => {
       setSelectedOption(value);
+      isClient = (value=="C");
       setIsOpen(false);
-      console.log(selectedOption);
+      console.log('sel option:'+selectedOption);
+      console.log('isClient:'+isClient);
     };
 
     return (
@@ -112,4 +114,4 @@ const DropDownMenu = () =>
   )
 }
 
-  export default DropDownMenu; 
+export default DropDownMenu; 
