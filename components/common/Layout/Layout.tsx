@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { IoChatbubblesSharp } from 'react-icons/io5'
-import { BsChevronDown } from 'react-icons/bs'
+
+import DropDownMenu from '../../Dashboard/DropDownMenu'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   // TODO: Hide header when in a Modal workflow i.e. NewQuote or ReviewUpdate where the only actions are those on the modal form
@@ -14,26 +15,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <button>
             <HiOutlineMenuAlt1 className="text-xl" />
           </button>
-          <div className="flex gap-3 items-center">
-            <button className="bg-gray-200 p-2 rounded-full">
+          <button className="bg-gray-200 p-2 rounded-full">
               <IoChatbubblesSharp className=" text-xl text-primary/80" />
-            </button>
-            <button className="flex items-center gap-1">
-              <span className="text-sm font-medium">JeyD.eth</span>
-              <span className="mx-1">
-                <Image
-                  src="/images/julian.jpg"
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                  alt="User image"
-                />
-              </span>
-
-              <span>
-                <BsChevronDown className="text-sm" />
-              </span>
-            </button>
+          </button>
+          <div className="flex gap-3 items-center">
+            <DropDownMenu/>
           </div>
         </div>
       </header>
