@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { styled } from '@stitches/react'
 import WalletBalance from './WalletBalance';
 import { BsPalette, BsPiggyBank } from 'react-icons/bs';
@@ -56,11 +56,16 @@ const ListItem = styled("li", {
 
 const options = ["A", "C"];
 
-const DropDownMenu = (isClient: boolean) =>
+const DropDownMenu = ({props}) =>
 {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("A");
     
+    console.log('handleStatusChange:'+props.handleStatusChange);
+    const setIsClient = props.handleStatusChange;
+
+    var isClient = props.isClient;
+
     const toggling = () => setIsOpen(!isOpen);
   
     const onOptionClicked = value => () => {
@@ -68,7 +73,9 @@ const DropDownMenu = (isClient: boolean) =>
       isClient = (value=="C");
       setIsOpen(false);
       console.log('sel option:'+selectedOption);
-      console.log('isClient:'+isClient);
+      console.log('isClient:'+props.isClient);
+      props.handleStatusChange(isClient);
+      /* reload UI with correct dashboard */
     };
 
     return (
