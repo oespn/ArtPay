@@ -6,7 +6,10 @@ import DropAsset from './DropAsset'
 //TODO: Set Modal View (no Header) with X in top right to close view. 
 
 
-const UpdateJob = () => {
+const UpdateJob = (option) => {
+
+  console.log('Option: '+option.option);
+//DONE: Resolve why select is not loading default when updateType is set
         const {
           register,
           trigger,
@@ -15,12 +18,15 @@ const UpdateJob = () => {
           formState: { errors },
         } = useForm({
           defaultValues: {
-            updateType: 'draft',
+            updateType: option.option,
             updateMessage: '',
             updateAssetUrl: '',
           },
         })
         const onSubmit = (data) => console.log(data)
+
+  
+        
 
   return (
     <section className="px-3 mt-3 text-darky">
