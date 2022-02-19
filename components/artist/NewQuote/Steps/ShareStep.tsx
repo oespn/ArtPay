@@ -6,6 +6,7 @@ import ShareLink from '../ShareLink'
 import ProjectRequirements from '../../../ProjectRequirements'
 
 const ShareStep = ({ register, trigger }: StepProps) => {
+
   return (
     <div>
       <QuoteSteps />
@@ -48,7 +49,7 @@ const ShareStep = ({ register, trigger }: StepProps) => {
           Back
         </button>
 
-        <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+        <button type="submit" className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
           Done
         </button>
       </div>

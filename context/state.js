@@ -8,7 +8,25 @@ export function AppWrapper({ children }) {
   let sharedState = {
     user_id: 0,
     user_name: "demo",
-    job_title: "unset"
+    job_title: "unset",
+    user: {
+      id: 0,
+      name: "user_name",
+      wallet_id:"near.testnet",
+      created: 0,
+      mode_client: true,
+    },
+    job: {
+      id: 0,
+      title: "Job title",
+      description: "Description",
+      lic_type: "C00",
+      job_type: "NFT",
+      expiry: 0,
+      created: 0,
+      created_by_userId: 0,
+      share_code: "abb-gta"
+    }
   };
 
 /* DB Requirements 
@@ -51,7 +69,7 @@ message: String
 media_url: String
 
 //JOB_COMPLETE
-id: Guid
+id: Guid // Extension relationship: 1-1 the Job its completes
 completed: DateTime
 media_url: String
 metadata: String

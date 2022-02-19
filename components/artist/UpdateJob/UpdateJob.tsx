@@ -35,6 +35,7 @@ const UpdateJob = (option) => {
   const onSubmit = (data) => {
     console.log(data);
     sessionState.job_title = data.updateMessage;
+//TODO:DB:POST to JOB_CHECKIN table
   }
 
   console.log(watch("updateMessage"));
