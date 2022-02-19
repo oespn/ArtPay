@@ -9,7 +9,6 @@ import { useAppContext } from '../context/state'
 import { initNear } from '../context/utils'
 
 import { connect, Contract, keyStores, Near, WalletConnection } from 'near-api-js'
-// import { initScriptLoader } from 'next/script';
 
 export default function Home() {
   const sessionState = useAppContext();

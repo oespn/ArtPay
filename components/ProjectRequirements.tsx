@@ -1,4 +1,7 @@
+import { useAppContext } from '.././context/state'
+
 const ProjectRequirements = () => {
+    const sessionState = useAppContext();
 
     return (
       <div>  
@@ -6,7 +9,7 @@ const ProjectRequirements = () => {
 
             <div className="mb-1">
             <p className="font-medium">Project</p>
-            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make [ProjectName] for the owner of the accepting wallet address.</p>
+            <p>I <span className="text-bold">{sessionState.job.contractor}</span> (Contractor) will make {sessionState.job.title} for the owner of the accepting wallet address.</p>
             </div>
 
             <div className="mb-1">

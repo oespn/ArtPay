@@ -60,7 +60,7 @@ const options = ["A", "C"];
 const DropDownMenu = ({props}) =>
 {
     const sessionState = useAppContext();
-    const [balance, setBalance] = useState(0);
+    const [walletBalance, setBalance] = useState(0);
 
     useEffect(() => {
       /* initalise near api here and store in AppContext */ 
@@ -69,12 +69,13 @@ const DropDownMenu = ({props}) =>
         sessionState.near = near;
         sessionState.wallet = wallet;
 
+        const account = await sessionState.near.account(sessionState.wallet.getAccountId());
+        setBalance(await account.getAccountBalance());
+
+        console.log(walletBalance);
         if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
             console.log(sessionState.wallet.getAccountId());
         }
-
-        const account = await sessionState.near.account("example-account.testnet");
-        setBalance(await account.getAccountBalance());
       }
 
       init();
@@ -126,7 +127,7 @@ const DropDownMenu = ({props}) =>
         {isOpen && (
           <DropDownListContainer>
             <DropDownList>
-              <WalletBalance/>
+              <WalletBalance balance={100}/>
               <hr/>
               <ListItem onClick={onOptionClicked('')} >Switch mode</ListItem>
               {options.map(option => (

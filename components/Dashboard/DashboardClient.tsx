@@ -8,13 +8,23 @@ import { AiOutlineEllipsis } from 'react-icons/ai'
 import MintOffer from './MintOffer'
 import Image from 'next/image'
 import FeaturedArtist from './FeaturedArtist'
+import Link from 'next/link'
 
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../../context/state'
-import { initNear } from '../../context/utils'
+import { initNear, loadContract } from '../../context/utils'
 
 const DashboardClient = () => {
   const sessionState = useAppContext();
+  const [escrows, setEscrows] = useState([
+    {
+      title: "Loading",
+      description: "...",
+      contractor: "...",
+      locked_amount: "...",
+      escrow_state: "...",
+    }
+  ]);
 
   useEffect(() => {
     /* initalise near api here and store in AppContext */ 
@@ -23,9 +33,11 @@ const DashboardClient = () => {
       sessionState.near = near;
       sessionState.wallet = wallet;
 
+      console.log(sessionState.wallet);
 
       if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
-          console.log("DFD");
+        const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
+        setEscrows(await contract.get_escrows_as_contractor({}));
       }
     }
 
@@ -51,45 +63,59 @@ const DashboardClient = () => {
             </span>
           </h2>
         </div>
+        {
+        escrows.map((escrow, index) => {
+          return (
+            <div key={index} className="shadow-md px-3 py-2 mb-2 bg-white">
+              <div className="flex justify-between text-lg mb-2">
+                <h3>{escrow.title}</h3>
+                <h3>{escrow.contractor}</h3>
 
-        <div className="shadow-md px-3 py-2 bg-white">
-          <div className="flex justify-between text-lg mb-2">
-            <h3>NFT headshot sketch for surfie</h3>
-            <button>
-              <AiOutlineEllipsis className="text-xl" />
-            </button>
-          </div>
-          <p className="tracking-tight text-sm">
-            Make me cross between a shark and a surfboard 🤙 …
-          </p>
-          <div className="mt-4 flex justify-between">
-            <div className="flex items-center gap-2">
-              <span className="mx-1">
-                <Image
-                  src="/images/julian.jpg"
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                />
-              </span>
-              <p>
-                <span className="text-xs">NEAR</span>
-                <b className="font-bold">$2,500</b>
+                <button>
+                  <AiOutlineEllipsis className="text-xl" />
+                </button>
+              </div>
+              <p className="tracking-tight">
+                {escrow.description}
               </p>
+              <p className="tracking-tight">
+                PROGRESS: {escrow.escrow_state}
+              </p>
+              <div className="mt-4 flex justify-between">
+                <div className="flex items-center gap-2">
+                  {/* <span className="mx-1">
+                    <Image
+                      src="/images/julian.jpg"
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                  </span> */}
+                  <p>
+                    <span className="text-xs">NEAR</span>
+                    <b className="font-bold">{` $${escrow.locked_amount}`}</b>
+                  </p>
+                </div>
+                <div className="flex gap-2 text-lg">
+                  <Link href="/update-job/draft">
+                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                        <BsFillPencilFill className="" />
+                    </button>
+                  </Link>
+                  <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                    <BsFillChatFill className="" />
+                  </button>
+                  <Link href="/update-job/final">
+                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                      <BsCheck2 className="" />
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="flex gap-2 text-lg">
-              <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
-                <BsFillPencilFill className="" />
-              </button>
-              <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
-                <BsFillChatFill className="" />
-              </button>
-              <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
-                <BsCheck2 className="" />
-              </button>
-            </div>
-          </div>
-        </div>
+          )
+        })
+      }   
 
         <div className="mb-2">
           <h2 className="flex items-center gap-2 font-medium text-xl mt-7">

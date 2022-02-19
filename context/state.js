@@ -23,6 +23,8 @@ export function AppWrapper({ children }) {
     // user_id: 0,
     // user_name: "",
     // job_title: "unset",
+    MAX_GAS: "300000000000000",
+    MINT_PRICE: "10000000000000000000000",
     near: null,
     wallet: null,
     user: {
@@ -32,17 +34,25 @@ export function AppWrapper({ children }) {
       // created: 0,
       mode_client: true,
     },
+    newNFT: {
+      tokenId: "",
+      imageURL: "",
+      copyright: "",
+      rightAssign: "CC0",
+      attributeParties: []
+    },
     escrows: [],
     job: {
       id: 0,
       title: "Job title",
       description: "Description",
       lic_type: "C00",
-      job_type: "NFT",
+      job_type: "0",
       expiry: 0,
       created: 0,
-      created_by_userId: 0,
-      share_code: "abb-gta"
+      contractor: "",
+      // created_by_userId: 0,
+      // share_code: "abb-gta"
     },
     abi: {
       nft: {

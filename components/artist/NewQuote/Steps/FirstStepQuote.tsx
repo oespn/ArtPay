@@ -4,9 +4,18 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import { useAppContext } from '../../../../context/state'
 import { useForm } from 'react-hook-form'
+import { IoSettingsOutline } from 'react-icons/io5'
 
 const FirstStepQuote = ({ register, trigger }: StepProps) => {
 
+  const sessionState = useAppContext();
+
+  const setTitle = val => sessionState.job.title = val;
+  const setType = val => sessionState.job.job_type = val;
+  const setDescription = val => sessionState.job.description = val;
+  const setExpiry = val => {
+    sessionState.job.expiry = Date.parse(val); // timestamp
+  }
   return (
     <div>
       <QuoteSteps />
@@ -18,6 +27,7 @@ const FirstStepQuote = ({ register, trigger }: StepProps) => {
         <input
           {...register('title', { required: true })}
           type="text"
+          onChange={e => setTitle(e.target.value)}
           className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
         />
       </label>
@@ -27,11 +37,13 @@ const FirstStepQuote = ({ register, trigger }: StepProps) => {
         <div className="relative w-full">
           <select
             {...register('job_type', { required: true })}
+            onChange={e => setType(e.target.value)}
             className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full"
           >
-            <option value="one">Custom Artwork</option>
-            <option value="two">Another option</option>
-            <option value="three">Yeah, another option</option>
+            <option value="1">Custom Artwork</option>
+            <option value="2">Artwork 1</option>
+            <option value="3">Free Artwork</option>
+            <option value="4">Artwork Custom</option>
           </select>
           <HiOutlineSelector className="absolute right-2 bottom-2 text-2xl" />
         </div>
@@ -42,8 +54,19 @@ const FirstStepQuote = ({ register, trigger }: StepProps) => {
         <textarea
           {...register('description', { required: true })}
           rows={3}
+          onChange={e => setDescription(e.target.value)}
           className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
         ></textarea>
+      </label>
+
+      <label className="flex flex-col mb-5">
+        <span className="font-medium mb-2">Expiry Date</span>
+        <input
+          {...register('expiry_date', { required: true })}
+          type="date"
+          onChange={e => setExpiry(e.target.value)}
+          className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
+        />
       </label>
 
       <NewQuoteButtonSteps trigger={trigger} />

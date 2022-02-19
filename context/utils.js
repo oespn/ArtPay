@@ -17,6 +17,7 @@ const abi = {
             "create_new_escrow", 
             "take_my_money",
             "get_escrows_as_contractor",
+            "get_escrows_as_client",
             "set_nft_deliverable"],
     }
 }

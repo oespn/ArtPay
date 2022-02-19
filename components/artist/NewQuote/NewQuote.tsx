@@ -25,9 +25,9 @@ const NewQuote = () => {
   const sessionState = useAppContext();
 
   const onSubmit = (data) => {
-    console.log("No data expected:"+data);
-    console.log("SessionState.job should have it"+ sessionState.job);
+    console.log(sessionState.job);
     //TODO:DB: Append row in JOB table from sessionState.job
+    
   }
 
 
