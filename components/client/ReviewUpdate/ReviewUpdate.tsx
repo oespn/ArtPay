@@ -21,7 +21,28 @@ const ReviewUpdate = () => {
     },
   })
   const pageId = 0; //this.props.id passed in param
-  const onSubmit = (data) => console.log(data)
+
+
+  //TODO: intercept params on: http://localhost:3000/client-update/:share_code
+  //TODO: read job matching query.params.share_code from database
+  const job = {
+    id: 0,
+    title: "Job title",
+    description: "Description",
+    lic_type: "C00",
+    job_type: "NFT",
+    expiry: 0,
+    created: 0,
+    created_by_userId: 0,
+    share_code: "abb-gta"
+  };
+
+  //TODO: Reject show pop-up: contact the artist.
+
+  const onSubmit = (data) => {
+    console.log("Submit and open wallet: "+ job.title);
+  //TODO:SMC: Append ESCROWs table
+  }
 
   return (
     <section className="px-5 mt-3 text-darky">
@@ -30,14 +51,6 @@ const ReviewUpdate = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard startIndex={pageId}>
-          {/**
-           * ReceiveQuote
-           * FundEscrow
-           * Update (FirstStepUpdate) - can be issued multiple times
-           * Final
-           * Your NFT (YourDeliverable)
-           */}
-
           <ReceiveQuote register={register} trigger={trigger} />
           <FundEscrow register={register} trigger={trigger} />
           <FirstStepUpdate register={register} trigger={trigger} />
