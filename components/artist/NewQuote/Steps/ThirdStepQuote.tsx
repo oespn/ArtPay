@@ -17,14 +17,6 @@ const ThirdStepQuote = ({ register }: StepProps) => {
       <QuoteSteps />
       <h3 className="text-xl font-medium mb-5">Price & costs</h3>
 
-      <div>{sessionState.job.title}</div>
-      <div>{sessionState.job.job_type}</div>
-      <div>{sessionState.job.description}</div>
-      <div>{sessionState.job.lic_type}</div>
-      <div>{sessionState.job.expiry}</div>
-
-      <div>{sessionState.job.contractor}</div>
-
       <div className="relative flex justify-end">
         <select className="w-7/12 shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white">
           <option value="NEAR">NEAR</option>

@@ -16,12 +16,7 @@ const ThirdStepQuote = ({ register }: StepProps) => {
     <div>
       <QuoteSteps />
       <h3 className="text-xl font-medium mb-5">Price & costs</h3>
-
-      <div>{sessionState.newNFT.tokenId}</div>
-      <div>{sessionState.newNFT.imageURL}</div>
-      <div>{sessionState.newNFT.copyright}</div>
-      <div>{sessionState.newNFT.rightAssign}</div>
-
+      
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Contractor (Optional)</span>
         <input

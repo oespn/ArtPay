@@ -16,8 +16,6 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
     setIsProceed(value)
   }
 
-  //TODO: make tip text appear and button enable dependent on isProceed
-  //Reject show pop-up: contact the artist.
 
   return (
     <div>
@@ -78,7 +76,7 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
           By continuing you agree with the requirements.
         </p>
       </div>
-
+ 
       <div className="mt-3 flex justify-end ">
         <button
           type="button"
@@ -87,11 +85,13 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
           Reject
         </button>
 
-        <button className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+        <button type="submit" className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
           Continue
         </button>
-      </div>
+        
+      </div>    
     </div>
+
   )
 }
 

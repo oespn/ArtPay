@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, useFormContext } from 'react-hook-form'
 import { Wizard } from 'react-use-wizard'
 import FirstStepQuote from './Steps/FirstStepQuote'
 import FourStepQuote from './Steps/FourStep'
@@ -19,8 +19,6 @@ const NewQuote = () => {
       legalAssignment: 1,
     },
   })
-  //const onSubmit = (data) => console.log(data)
-
 
   const sessionState = useAppContext();
 
@@ -28,6 +26,8 @@ const NewQuote = () => {
     console.log(sessionState.job);
     //TODO:DB: Append row in JOB table from sessionState.job
     
+    console.log(">> Data.title title should have a value:"+ data.title); // IT WORKED!
+    //TODO:DB: Append row in JOB table from sessionState.job
   }
 
 
@@ -37,7 +37,7 @@ const NewQuote = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard>
-          <FirstStepQuote register={register} trigger={trigger} />
+          <FirstStepQuote register={register} trigger={trigger} watch={watch} />
           <SecondStepQuote
             register={register}
             trigger={trigger}

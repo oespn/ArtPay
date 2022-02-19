@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../context/state'
 import { useForm } from 'react-hook-form'
 import { IoSettingsOutline } from 'react-icons/io5'
 
-const FirstStepQuote = ({ register, trigger }: StepProps) => {
+const FirstStepQuote = ({ register, trigger, watch }: StepProps) => {
 
   const sessionState = useAppContext();
 
