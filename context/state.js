@@ -1,21 +1,38 @@
 import { stringify } from 'querystring';
 import { createContext, useContext } from 'react';
 
+// import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+
+// import * as nearAPI from "near-api-js"; // Load as web3 into state and use as `near`
+// const { connect, keyStores, WalletConnection, utils } = nearAPI;
+// const keyStore = new keyStores.BrowserLocalStorageKeyStore();
+// const config = {
+//   networkId: "testnet",
+//   keyStore: keyStore,
+//   nodeUrl: "https://rpc.testnet.near.org",
+//   walletUrl: "https://wallet.testnet.near.org",
+//   helperUrl: "https://helper.testnet.near.org",
+//   explorerUrl: "https://explorer.testnet.near.org",
+// };
+
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
 
   let sharedState = {
-    user_id: 0,
-    user_name: "demo",
-    job_title: "unset",
+    // user_id: 0,
+    // user_name: "",
+    // job_title: "unset",
+    near: null,
+    wallet: null,
     user: {
-      id: 0,
+      // id: 0,
       name: "user_name",
       wallet_id:"near.testnet",
-      created: 0,
+      // created: 0,
       mode_client: true,
     },
+    escrows: [],
     job: {
       id: 0,
       title: "Job title",
@@ -26,7 +43,20 @@ export function AppWrapper({ children }) {
       created: 0,
       created_by_userId: 0,
       share_code: "abb-gta"
+    },
+    abi: {
+      nft: {
+        contractAddr: "nft.artpay.testnet",
+        viewMethods: ["nft_metadata", "nft_token"],
+        changeMethods: ["nft_mint", "allowance", "nft_transfer"],
+      },
+      escrow: {
+        contractAddr: "escrow.artpay.testnet",
+        viewMethods: ["get_escrow"],
+        changeMethods: ["release_escrow", "contractor_approval", "client_approval", "create_new_escrow", "take_my_money", "set_deliverable", "set_nft_deliverable"],
+      }
     }
+    
   };
 
 /* DB Requirements 

@@ -5,7 +5,8 @@ import WalletBalance from './WalletBalance';
 import { BsPalette, BsPiggyBank } from 'react-icons/bs';
 import { BsChevronDown } from 'react-icons/bs'
 import Image from 'next/image'
-
+import { useAppContext } from '../../context/state'
+import { initNear, signout } from '../../context/utils'
 
 const Main = styled("div", {
   width: '9em',
@@ -58,6 +59,27 @@ const options = ["A", "C"];
 
 const DropDownMenu = ({props}) =>
 {
+    const sessionState = useAppContext();
+    const [balance, setBalance] = useState(0);
+
+    useEffect(() => {
+      /* initalise near api here and store in AppContext */ 
+      const init = async () => {
+        const { near, wallet } = await initNear();
+        sessionState.near = near;
+        sessionState.wallet = wallet;
+
+        if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
+            console.log(sessionState.wallet.getAccountId());
+        }
+
+        const account = await sessionState.near.account("example-account.testnet");
+        setBalance(await account.getAccountBalance());
+      }
+
+      init();
+    }, []);
+
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("A");
     
@@ -83,8 +105,8 @@ const DropDownMenu = ({props}) =>
       <DropDownContainer>
           <DropDownHeader onClick={toggling}>
           <button className="flex items-center gap-1">
-            <span className="text-sm font-medium">JeyD.eth</span>
-            <span className="mx-1">
+            <span className="text-sm font-medium">{(sessionState.wallet && sessionState.wallet.getAccountId())}</span>
+            {/* <span className="mx-1">
               <Image
                 src="/images/julian.jpg"
                 width={32}
@@ -92,7 +114,7 @@ const DropDownMenu = ({props}) =>
                 className="rounded-full"
                 alt="User image"
               />
-            </span>
+            </span> */}
             <span>
               {selectedOption == "A" ? <BsPalette/> : <BsPiggyBank/> }
             </span>
@@ -112,7 +134,7 @@ const DropDownMenu = ({props}) =>
                   {option == "A" ? <BsPalette/> : <BsPiggyBank/> }
                 </ListOption>
               ))}
-              <ListItem onClick={onOptionClicked('')} >Sign Out</ListItem>
+              <ListItem onClick={() => signout(sessionState.wallet)} >Sign Out</ListItem>
             </DropDownList>
           </DropDownListContainer>
         )}

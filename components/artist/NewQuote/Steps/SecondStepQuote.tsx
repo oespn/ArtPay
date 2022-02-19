@@ -7,12 +7,15 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './SecondStepQuoteStyles'
+import { useAppContext } from '../../../../context/state'
 
 // Exports
 const Switch = StyledSwitch
 const SwitchThumb = StyledThumb
 
 const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
+  const sessionState = useAppContext();
+
   const watchLegal = watch('legalAssignment')
   const [isDerivateWork, setIsDerivateWork] = useState(false)
 
@@ -23,7 +26,7 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
   return (
     <div>
       <QuoteSteps />
-
+      <div>{sessionState.job.title}</div>
       <h3 className="text-xl font-medium mb-5">Who owns the rights?</h3>
 
       <label className="flex flex-col mb-5">

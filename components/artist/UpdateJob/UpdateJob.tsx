@@ -6,7 +6,6 @@ import { useAppContext } from '../../../context/state'
 
 //TODO: Set Modal View (no Header) with X in top right to close view. 
 
-
 const UpdateJob = (option) => {
 
   const sessionState = useAppContext();

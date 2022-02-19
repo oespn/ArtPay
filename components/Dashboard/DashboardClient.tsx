@@ -9,7 +9,29 @@ import MintOffer from './MintOffer'
 import Image from 'next/image'
 import FeaturedArtist from './FeaturedArtist'
 
+import { useState, useEffect } from 'react'
+import { useAppContext } from '../../context/state'
+import { initNear } from '../../context/utils'
+
 const DashboardClient = () => {
+  const sessionState = useAppContext();
+
+  useEffect(() => {
+    /* initalise near api here and store in AppContext */ 
+    const init = async () => {
+      const { near, wallet } = await initNear();
+      sessionState.near = near;
+      sessionState.wallet = wallet;
+
+
+      if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
+          console.log("DFD");
+      }
+    }
+
+    init();
+  }, []);
+
   return (
     <section className=" mt-3 text-darky">
       <div className="px-3">
@@ -51,7 +73,7 @@ const DashboardClient = () => {
                 />
               </span>
               <p>
-                <span className="text-xs">TUSD</span>
+                <span className="text-xs">NEAR</span>
                 <b className="font-bold">$2,500</b>
               </p>
             </div>
