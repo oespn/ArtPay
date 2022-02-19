@@ -10,6 +10,7 @@ import { AiOutlineEllipsis } from 'react-icons/ai'
 import MintOffer from './MintOffer'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../../context/state'
@@ -17,8 +18,12 @@ import { initNear, loadContract } from '../../context/utils'
 
 const DashboardArtist = () => {
   const sessionState = useAppContext();
+  const router = useRouter()
+
   const [escrows, setEscrows] = useState([
     {
+      client: "",
+      escrow_id: 0,
       title: "Loading",
       description: "...",
       contractor: "...",
@@ -44,6 +49,11 @@ const DashboardArtist = () => {
 
     init();
   }, []);
+
+
+  const redirect = (escrowClient, escrowId, type) => {
+    router.push(`/update-job/${type}?client=${escrowClient}&id=${escrowId}`); // required
+  }
 
 
   return (
@@ -105,19 +115,19 @@ const DashboardArtist = () => {
                   </p>
                 </div>
                 <div className="flex gap-2 text-lg">
-                  <Link href="/update-job/draft">
-                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                <button 
+                    onClick={() => redirect(escrow.client, escrow.escrow_id, "draft")}
+                    className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                         <BsFillPencilFill className="" />
                     </button>
-                  </Link>
                   <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                     <BsFillChatFill className="" />
                   </button>
-                  <Link href="/update-job/final">
-                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                    <button 
+                      onClick={() => redirect(escrow.client, escrow.escrow_id, "final")}
+                      className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                       <BsCheck2 className="" />
                     </button>
-                  </Link>
                 </div>
               </div>
             </div>

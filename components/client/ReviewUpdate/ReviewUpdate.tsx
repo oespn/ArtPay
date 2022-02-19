@@ -61,7 +61,6 @@ const ReviewUpdate = () => {
     sessionState.wallet = wallet;
 
     setMessage(`Creating Job ...`);
-
     const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
     const escrowId = await contract.create_new_escrow(
       {

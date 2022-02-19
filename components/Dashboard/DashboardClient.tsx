@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../../context/state'
 import { initNear, loadContract } from '../../context/utils'
+import { useRouter } from 'next/router'
 
 const baseEscrow = {
   title: "Loading",
@@ -24,6 +25,8 @@ const baseEscrow = {
 
 const DashboardClient = () => {
   const sessionState = useAppContext();
+  const router = useRouter()
+
   const [escrows, setEscrows] = useState([baseEscrow]);
 
   useEffect(() => {
@@ -46,6 +49,11 @@ const DashboardClient = () => {
     let ret = [];
     escrows.map(e => e.escrow_state === state && ret.push(e))
     return ret;
+  }
+
+  const redirect = (escrowId) => {
+    sessionState.selectedEscrow = escrowId;
+    router.push(`/update-job/draft?escrow=${escrowId}`); //query optional for now.
   }
 
   return (
@@ -102,11 +110,13 @@ const DashboardClient = () => {
                   </p>
                 </div>
                 <div className="flex gap-2 text-lg">
-                  <Link href="/update-job/draft">
-                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                  {/* <Link href="/update-job/draft"> */}
+                    <button 
+                    onClick={() => redirect(`${escrow.client}${escrow.contractor}${escrow.escrow_id}`)}
+                    className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                         <BsFillPencilFill className="" />
                     </button>
-                  </Link>
+                  {/* </Link> */}
                   <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                     <BsFillChatFill className="" />
                   </button>
@@ -169,19 +179,9 @@ const DashboardClient = () => {
                   </p>
                 </div>
                 <div className="flex gap-2 text-lg">
-                  <Link href="/update-job/draft">
-                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
-                        <BsFillPencilFill className="" />
-                    </button>
-                  </Link>
                   <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
                     <BsFillChatFill className="" />
                   </button>
-                  <Link href="/update-job/final">
-                    <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
-                      <BsCheck2 className="" />
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>

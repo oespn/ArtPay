@@ -7,6 +7,7 @@ import { BsChevronDown } from 'react-icons/bs'
 import Image from 'next/image'
 import { useAppContext } from '../../context/state'
 import { initNear, signout } from '../../context/utils'
+import { useRouter } from 'next/router';
 
 const Main = styled("div", {
   width: '9em',
@@ -60,7 +61,9 @@ const options = ["A", "C"];
 const DropDownMenu = ({props}) =>
 {
     const sessionState = useAppContext();
-    const [walletBalance, setBalance] = useState(0);
+    const router = useRouter();
+
+    const [walletBalance, setBalance] = useState("0");
 
     useEffect(() => {
       /* initalise near api here and store in AppContext */ 
@@ -69,12 +72,12 @@ const DropDownMenu = ({props}) =>
         sessionState.near = near;
         sessionState.wallet = wallet;
 
-        const account = await sessionState.near.account(sessionState.wallet.getAccountId());
-        setBalance(await account.getAccountBalance());
-
-        console.log(walletBalance);
         if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
             console.log(sessionState.wallet.getAccountId());
+            const account = await near.account(sessionState.wallet.getAccountId());
+            const b = await account.getAccountBalance();
+            console.log(b.available);
+            setBalance(b.available.toString());
         }
       }
 
@@ -127,7 +130,7 @@ const DropDownMenu = ({props}) =>
         {isOpen && (
           <DropDownListContainer>
             <DropDownList>
-              <WalletBalance balance={100}/>
+              <WalletBalance balance={walletBalance}/>
               <hr/>
               <ListItem onClick={onOptionClicked('')} >Switch mode</ListItem>
               {options.map(option => (
@@ -135,7 +138,7 @@ const DropDownMenu = ({props}) =>
                   {option == "A" ? <BsPalette/> : <BsPiggyBank/> }
                 </ListOption>
               ))}
-              <ListItem onClick={() => signout(sessionState.wallet)} >Sign Out</ListItem>
+              <ListItem onClick={() => { signout(sessionState.wallet); router.push("/");}} >Sign Out</ListItem>
             </DropDownList>
           </DropDownListContainer>
         )}

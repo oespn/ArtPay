@@ -1,4 +1,4 @@
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+import { connect, Contract, keyStores, WalletConnection, utils  } from 'near-api-js'
 
 
 const abi = {
@@ -13,12 +13,15 @@ const abi = {
       changeMethods: [
           "release_escrow", 
           "contractor_approval",
-            "client_approval", 
-            "create_new_escrow", 
-            "take_my_money",
-            "get_escrows_as_contractor",
-            "get_escrows_as_client",
-            "set_nft_deliverable"],
+          "client_approval", 
+          "create_new_escrow", 
+          "create_escrow_checkin",
+          "take_my_money",
+          "get_escrow_checkin",
+          "get_escrow_checkins_list",
+          "get_escrows_as_contractor",
+          "get_escrows_as_client",
+          "set_nft_deliverable"],
     }
 }
 
@@ -57,4 +60,8 @@ export function loadContract(near, wallet, contract) {
         sender: wallet.getAccountId(), 
       }
     )
+}
+
+export function yoctoToNear(amount = "1000000000000000000000000") {
+  return Number(utils.format.formatNearAmount(amount)).toFixed(2);
 }

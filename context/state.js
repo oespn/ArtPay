@@ -34,6 +34,10 @@ export function AppWrapper({ children }) {
       // created: 0,
       mode_client: true,
     },
+    updateJob: {
+      client: "",
+      id: 0,
+    },
     newNFT: {
       tokenId: "",
       imageURL: "",

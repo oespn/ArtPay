@@ -12,6 +12,7 @@ import { connect, Contract, keyStores, Near, WalletConnection } from 'near-api-j
 
 export default function Home() {
   const sessionState = useAppContext();
+  const router = useRouter()
 
   useEffect(() => {
     /* initalise near api here and store in AppContext */ 
@@ -27,10 +28,6 @@ export default function Home() {
 
     init();
   }, []);
-
-  // const [near, setNear] = useState(null);
-
-  const router = useRouter()
 
   const login = async () => {
     console.log("Login");
