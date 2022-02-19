@@ -16,7 +16,7 @@ export default function Home() {
     console.log('handleStatusChange: ', status);
     
   }
-  console.log('Listening dash-mode: ', isClient);
+  //console.log('Listening dash-mode: ', isClient);
   
   const dropBarUpdate = (
     <DropDownMenu props= {{isClient, handleStatusChange}} />
