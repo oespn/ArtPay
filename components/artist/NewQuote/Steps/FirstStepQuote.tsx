@@ -5,8 +5,9 @@ import QuoteSteps from '../NewQuoteNumberSteps'
 import { useAppContext } from '../../../../context/state'
 import { useForm } from 'react-hook-form'
 
-const FirstStepQuote = ({ register, trigger }: StepProps) => {
+const FirstStepQuote = ({ register, trigger, watch }: StepProps) => {
 
+  console.log(watch("title"));
   return (
     <div>
       <QuoteSteps />
