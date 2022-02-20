@@ -15,9 +15,6 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../../context/state'
 import { initNear, loadContract } from '../../context/utils'
-
-import { useAppContext } from '../../context/state'
-import { useState, useEffect } from 'react'
 import { supabase } from '../../supabaseClient'
 
 const DashboardArtist = () => {
@@ -37,6 +34,9 @@ const DashboardArtist = () => {
     }
   ]);
 
+ 
+  const [jobs, setJobs] = useState([]);
+
   useEffect(() => {
     /* initalise near api here and store in AppContext */ 
     const init = async () => {
@@ -52,8 +52,19 @@ const DashboardArtist = () => {
       }
     }
 
+    (async () => {
+      const { data, error } = await supabase
+      .from('Job')
+      .select()
+
+      if (data) {
+          setJobs([...data]);
+      }
+    })();
+
+
     init();
-  }, []);
+  }, [setJobs]);
 
 
   const redirect = (escrowClient, escrowId, type) => {
@@ -62,26 +73,25 @@ const DashboardArtist = () => {
 
 
   // DB source
- 
-  const [jobs, setJobs] = useState([]);
 
-  useEffect(() => {
+
+  // useEffect(() => {
        
-    (async () => {
-        const { data, error } = await supabase
-        .from('Job')
-        .select()
+  //   (async () => {
+  //       const { data, error } = await supabase
+  //       .from('Job')
+  //       .select()
 
-        if (data) {
-            setJobs([...data]);
-        }
-    })();
+  //       if (data) {
+  //           setJobs([...data]);
+  //       }
+  //   })();
 
-  }, [setJobs])
+  // }, [setJobs])
 
   sessionState.job = jobs.find(e=>true);
 
-  const isUseDB = 0;
+  const isUseDB = false;
 
 
   return (
@@ -109,10 +119,10 @@ const DashboardArtist = () => {
         </h2>
       </div>
 
-      if (!isUseDB)
-      {
+      {/*
         escrows.map((escrow, index) => {
           return (
+          {
             <div key={index} className="shadow-md px-3 py-2 mb-2 bg-white">
               <div className="flex justify-between text-lg mb-2">
                 <h3>{escrow.title}</h3>
@@ -130,14 +140,6 @@ const DashboardArtist = () => {
               </p>
               <div className="mt-4 flex justify-between">
                 <div className="flex items-center gap-2">
-                  {/* <span className="mx-1">
-                    <Image
-                      src="/images/julian.jpg"
-                      width={32}
-                      height={32}
-                      className="rounded-full"
-                    />
-                  </span> */}
                   <p>
                     <span className="text-xs">NEAR</span>
                     <b className="font-bold">{` $${escrow.locked_amount}`}</b>
@@ -161,11 +163,9 @@ const DashboardArtist = () => {
               </div>
             </div>
           )
-        })
+        })*/
       }      
-    }
-    else
-    {
+    
       <div className="shadow-md px-3 py-2 bg-white">
         <div className="flex justify-between text-lg mb-2">
           <h3>NFT headshot sketch for surfie</h3>
@@ -208,7 +208,7 @@ const DashboardArtist = () => {
           </div>
         </div>
       </div>
-    }
+    
 
       <div className="mb-2">
         <h2 className="flex items-center gap-2 font-medium text-xl mt-7">

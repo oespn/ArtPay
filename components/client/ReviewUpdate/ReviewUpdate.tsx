@@ -12,7 +12,7 @@ import { supabase } from '../../../supabaseClient'
 
 import { useAppContext } from '../../../context/state'
 import { initNear, loadContract } from '../../../context/utils'
-import { useState, useEffect } from 'react'
+
 
 const ReviewUpdate = () => {
   const sessionState = useAppContext();
@@ -28,7 +28,7 @@ const ReviewUpdate = () => {
       legalAssignment: 1,
     },
   })
-  const pageId = 4; //this.props.id passed in param
+  const pageId = 0; //this.props.id passed in param
 
 
   //TODO: intercept params on: http://localhost:3000/client-update/:share_code

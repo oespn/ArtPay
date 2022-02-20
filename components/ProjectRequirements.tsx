@@ -1,10 +1,10 @@
 import { useAppContext } from '.././context/state'
 
-const ProjectRequirements = () => {
+  
+const ProjectRequirements = ({job}) => {
 
   const sessionState = useAppContext();
-  
-  const ProjectRequirements = ({job}) => {
+
 
   console.log('ProjectRequirements job:'+job['title']);
 

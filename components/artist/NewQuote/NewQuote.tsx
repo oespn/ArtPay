@@ -75,7 +75,7 @@ const NewQuote = () => {
     console.log(sessionState.job);
     //TODO:DB: Append row in JOB table from sessionState.job
     
-    console.log(">> Data.title title should have a value:"+ data.title); // IT WORKED!
+    //console.log(">> Data.title title should have a value:"+ data.title); // IT WORKED!
     //TODO:DB: Append row in JOB table from sessionState.job
 
   }
