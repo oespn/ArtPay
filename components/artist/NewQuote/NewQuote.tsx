@@ -45,11 +45,18 @@ const NewQuote = () => {
 
     (async () => {
       const { data, error } = await supabase
-      .from('job')
-      .update(values)
-      .match({ id: 1 });
-      //.eq( 'id', 1 );
-
+      .from('Job')
+      .insert(
+        {
+          title: values.title,
+          share_code: values.share_code,
+          lic_type: values.lic_type,
+          job_type: values.job_type,
+          description: values.description
+        }
+        //  values
+      )
+  
       if (data) {
         setJobs([...data]);
       }
@@ -59,9 +66,9 @@ const NewQuote = () => {
       }
       //.eq('address->postcode', 90210)
     })(); 
-
+// sharedState.job.share_code
     //sessState.sharedState.job = values;
-    console.log(">> Data.title title should have a value:"+ values.title); 
+    //console.log(">> Code:"+ sessState.sharedState.job.share_code); 
     console.log(">> Data.title title should have a value:"+ values.title); // IT WORKED!
     console.log('Data now:'+ values);
 //TODO:DB: Append row in JOB table from sessionState.job

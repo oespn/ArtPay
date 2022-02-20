@@ -19,10 +19,6 @@ const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
     setIsProceed(value)
   }
 
-
-
-
-
   return (
     <div>
       <UpdateSteps />

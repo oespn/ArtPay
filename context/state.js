@@ -30,7 +30,7 @@ export function AppWrapper({ children }) {
   };
 
   let base36id = Math.round((Math.floor (new Date()) / Math.random(100)) * Math.random(100));
-  sharedState.job.share_code = base36id;
+  sharedState.job.share_code = base36id.toString(36);
 
   console.log('jobId: '+base36id+','+base36id.toString(36));
 

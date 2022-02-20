@@ -47,7 +47,7 @@ const ReviewUpdate = () => {
   }
 
 
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([0]);
 
   useEffect(() => {
        
@@ -55,16 +55,23 @@ const ReviewUpdate = () => {
         const { data, error } = await supabase
         .from('Job')
         .select()
+        //.match({id: 1})
+        .match({share_code: 'gendz8j3'})
+        //match on share_code
 
         if (data) {
             setJobs([...data]);
+        }
+        else {
+          console.log('error loading:'+ error);
         }
     })();
 
   }, [setJobs])
 
+
   console.log(jobs);
-  let j = jobs.find(e => 1);
+  let j = jobs.find(e => true);
 
   //j = job;
   console.log(j);

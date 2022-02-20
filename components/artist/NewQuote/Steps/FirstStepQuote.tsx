@@ -5,7 +5,10 @@ import QuoteSteps from '../NewQuoteNumberSteps'
 import { useAppContext } from '../../../../context/state'
 import { useForm } from 'react-hook-form'
 
-const FirstStepQuote = ({ register, trigger, watch }: StepProps) => {
+const FirstStepQuote = ({ register, trigger, watch, job }: StepProps) => {
+
+  var job_share_code = job.share_code;
+  console.log('Share code:' + job_share_code);
 
   console.log(watch("title"));
   return (
@@ -13,6 +16,8 @@ const FirstStepQuote = ({ register, trigger, watch }: StepProps) => {
       <QuoteSteps />
 
       <h3 className="text-xl font-medium mb-5">What are you making?</h3>
+
+      <input type="hidden" {...register('share_code' )} value = {job_share_code}/> 
 
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Project Title</span>
