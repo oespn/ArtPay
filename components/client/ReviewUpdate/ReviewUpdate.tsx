@@ -12,7 +12,6 @@ import { supabase } from '../../../supabaseClient'
 
 import { useAppContext } from '../../../context/state'
 import { initNear, loadContract } from '../../../context/utils'
-import { useState, useEffect } from 'react'
 
 const ReviewUpdate = () => {
   const sessionState = useAppContext();
@@ -58,28 +57,50 @@ const ReviewUpdate = () => {
   const onSubmit = async (data) => {
     console.log("Submit and open wallet: "+ job.title);
     //TODO:SMC: Append ESCROWs table
+
+    // Load NEAR stuff in session
     const { near, wallet } = await initNear();
     sessionState.near = near;
     sessionState.wallet = wallet;
 
-    setMessage(`Creating Job ...`);
-    const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
-    const escrowId = await contract.create_new_escrow(
-      {
-        contractor: job.contractor,
-        title: job.title,
-        escrow_type: job.job_type,
-        description: job.description,
-        timestamp: job.expiry,
+    // Add escrow to blockchain
+    // setMessage(`Creating Job ...`);
+    // const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
+    // const escrowId = await contract.create_new_escrow(
+    //   {
+    //     contractor: job.contractor,
+    //     title: job.title,
+    //     escrow_type: job.job_type,
+    //     description: job.description,
+    //     timestamp: job.expiry,
 
-        requirement: job.requirement,
+    //     requirement: job.requirement,
 
-        license_code: job.license_code,
-        license_desc: job.license_desc,
-        license_url: job.license_url,
-      }, sessionState.MAX_GAS, job.locked_amount 
-    );
-    setMessage(`Escrow created! Id: ${escrowId}`);
+    //     license_code: job.license_code,
+    //     license_desc: job.license_desc,
+    //     license_url: job.license_url,
+    //   }, sessionState.MAX_GAS, job.locked_amount 
+    // );
+    // setMessage(`Escrow created! Id: ${escrowId}`);
+
+    // int NFT? NFT minting must be done at final step as it'll refirect to NEAR wallet, not further executing code after.
+    // const NFTcontract: any = loadContract(sessionState.near, sessionState.wallet, "nft")
+    // const response = await NFTcontract.nft_mint( 
+    //   {
+    //     receiver_id: sessionState.wallet.getAccountId(),
+    //     token_id: sessionState.newNFT.tokenId,
+    //     metadata: { 
+    //       title: "ArtPay", 
+    //       description: "Example ArtPay NFT!", 
+    //       media: "IPFS URL / URL", 
+    //       copies: 1,
+    //       copyright: "copyright statement ...", // IMPORTANT FOR ARTPAY NFT
+    //       right_assign: "CC0", // IMPORTANT FOR ARTPAY NFT
+    //     },
+    //     // perpetual_royalties: attributeParties,
+    //   },
+    //   sessionState.MAX_GAS, sessionState.MINT_PRICE,
+    // );
   }
 
 
