@@ -36,6 +36,8 @@ const DashboardArtist = () => {
 
   }, [setJobs])
 
+  sessionState.job = jobs.find(e=>true);
+
 
   return (
     <section className="px-3 mt-3 text-darky">

@@ -33,7 +33,7 @@ const img = {
 };
 
 
-//TODO: Implement preview of image once uploaded
+//DONE: Implement preview of image once uploaded
 //TODO: Complete API approach to IPFS upload
 
 const DropAsset = () => {
@@ -85,12 +85,10 @@ const DropAsset = () => {
             files.length === 0 && <p>Drag &amp; drop some files here, or click to select files</p>         
           }
         </div>
-  
-          <h4>Files</h4>
-          <ul>{fileList}</ul>
-          <div >
-            {thumbs}
-          </div>
+        <div >
+          {thumbs}
+        </div>
+        <ul className="text-sm">{fileList}</ul>
         
       </section>
     )
