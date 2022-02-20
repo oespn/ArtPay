@@ -29,6 +29,11 @@ export function AppWrapper({ children }) {
     }
   };
 
+  let base36id = Date().value;
+  sharedState.job.share_code = base36id;
+
+  console.log('jobId:'+base36id);
+
 /* DB Requirements 
 //TODO Determine / minimise what IDs & Strings need to be kept in Context.
 

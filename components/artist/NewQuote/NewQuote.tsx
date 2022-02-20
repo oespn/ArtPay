@@ -27,6 +27,8 @@ const NewQuote = () => {
 //TODO:DB: Append row in JOB table from sessionState.job
   }
 
+  let j = sessionState.job;
+
 
   return (
     <section className="px-3 mt-3 text-darky">
@@ -34,14 +36,15 @@ const NewQuote = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard>
-          <FirstStepQuote register={register} trigger={trigger} watch={watch} />
+          <FirstStepQuote job={j} register={register} trigger={trigger} watch={watch} />
           <SecondStepQuote
+            job={j}
             register={register}
             trigger={trigger}
             watch={watch}
           />
-          <ThirdStepQuote register={register} trigger={trigger} />
-          <ShareStep register={register} trigger={trigger} />
+          <ThirdStepQuote job={j} register={register} trigger={trigger} />
+          <ShareStep job={j} register={register} trigger={trigger} />
         </Wizard>
       </form>
     </section>

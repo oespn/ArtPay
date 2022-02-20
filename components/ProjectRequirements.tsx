@@ -1,4 +1,6 @@
-const ProjectRequirements = () => {
+const ProjectRequirements = ({job}) => {
+
+  console.log('ProjectRequirements job:'+job['title']);
 
     return (
       <div>  
@@ -6,18 +8,18 @@ const ProjectRequirements = () => {
 
             <div className="mb-1">
             <p className="font-medium">Project</p>
-            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make [ProjectName] for the owner of the accepting wallet address.</p>
+            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make {job['title']} for the owner of the accepting wallet address.</p>
             </div>
 
             <div className="mb-1">
             <p className="font-medium">Description</p>
-            <p>[Description]</p>
+            <p>{job['description']||'unknown'}.</p>
             </div>
 
 
             <div className="mb-1">
             <p className="font-medium">Legal assignment</p>
-            <p>The Contractor will assign rights according to [C00]</p>
+            <p>The Contractor will assign rights according to {job['lic_type']||'unknown'}.</p>
             </div>
 
 

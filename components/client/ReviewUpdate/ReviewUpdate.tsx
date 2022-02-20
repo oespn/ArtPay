@@ -5,6 +5,8 @@ import FinalStepUpdate from './Steps/FinalStepUpdate'
 import YourDeliverable from './Steps/YourDeliverable'
 import ReceiveQuote from './Steps/ReceiveQuote'
 import FundEscrow from './Steps/FundEscrow'
+import { useState, useEffect } from 'react'
+import { supabase } from '../../../supabaseClient'
 //import SecondStepUpdate from './Steps/SecondStepUpdate'
 //import ThirdStepUpdate from './Steps/ThirdStepUpdate'
 
@@ -44,6 +46,29 @@ const ReviewUpdate = () => {
   //TODO:SMC: Append ESCROWs table
   }
 
+
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+       
+    (async () => {
+        const { data, error } = await supabase
+        .from('Job')
+        .select()
+
+        if (data) {
+            setJobs([...data]);
+            //onsole.log(jobs.length)
+        }
+    })();
+
+  }, [setJobs])
+
+  console.log(jobs);
+  let j = jobs.find(e=>true);
+  console.log(j);
+  
+
   return (
     <section className="px-5 mt-3 text-darky">
       <h2 className="text-2xl font-bold mb-5">[Job Name]</h2>
@@ -51,11 +76,11 @@ const ReviewUpdate = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard startIndex={pageId}>
-          <ReceiveQuote register={register} trigger={trigger} />
-          <FundEscrow register={register} trigger={trigger} />
-          <FirstStepUpdate register={register} trigger={trigger} />
-          <FinalStepUpdate register={register} trigger={trigger} />
-          <YourDeliverable register={register} trigger={trigger} />
+          <ReceiveQuote job={j} register={register} trigger={trigger} />
+          <FundEscrow job={j} register={register} trigger={trigger} />
+          <FirstStepUpdate job={j} register={register} trigger={trigger} />
+          <FinalStepUpdate job={j} register={register} trigger={trigger} />
+          <YourDeliverable job={j} register={register} trigger={trigger} />
         </Wizard>
       </form>
     </section>

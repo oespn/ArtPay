@@ -5,16 +5,24 @@ import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './UpdateStyles'
 import ProjectRequirements from '../../../ProjectRequirements'
 
+
+
 // Exports
 const Switch = StyledSwitch
 const SwitchThumb = StyledThumb
 
-const ReceiveQuote = ({ register, trigger }: StepProps) => {
+const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
   const [isProceed, setIsProceed] = useState(false)
+
+  console.log('rec quote job:'+job['title']);
+
 
   const handleSwitch = (value) => {
     setIsProceed(value)
   }
+
+
+
 
 
   return (
@@ -36,8 +44,8 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
 
       <label className="flex flex-col mb-5">
         <div className="flex justify-between px-0 py-2 deliveryBox">
-
-        <ProjectRequirements/>
+        {job.title}
+        <ProjectRequirements job={job}/>
 
         </div>
       </label>
