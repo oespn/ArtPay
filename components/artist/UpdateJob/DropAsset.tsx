@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import {useDropzone} from 'react-dropzone'
-
-
+import { useDropzone } from 'react-dropzone'
 
 const thumbsContainer = {
   display: 'flex',
@@ -54,8 +52,6 @@ const DropAsset = () => {
         //const nftStored = async() => { uploadToStorage(acceptedFiles[0]); }
       }
     })
-  
-  
     
     const fileList = files.map(file => (
       <li key={file.path}>
@@ -83,9 +79,11 @@ const DropAsset = () => {
   
     return (
       <section className="container">
-        <div {...getRootProps({className: 'dropzone'})}>
+        <div {...getRootProps({className: 'dropzone', onClick: evt => evt.preventDefault()})}>
           <input {...getInputProps()} />
-          <p>Drag &amp; drop some files here, or click to select files</p>
+          {
+            files.length === 0 && <p>Drag &amp; drop some files here, or click to select files</p>         
+          }
         </div>
   
           <h4>Files</h4>

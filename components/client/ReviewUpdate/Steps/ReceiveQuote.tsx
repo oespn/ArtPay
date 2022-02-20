@@ -86,10 +86,9 @@ const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
           Reject
         </button>
 
-        <button type="submit" className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+        <button type="submit" className={`px-3 rounded-sm py-1 bg-primary text-white font-medium ml-1`} disabled={!isProceed}>
           Continue
         </button>
-        
       </div>    
     </div>
 
