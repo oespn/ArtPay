@@ -16,9 +16,11 @@ const NewQuote = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    control
   } = useForm({
     defaultValues: {
       legalAssignment: 1,
+      Job_party: [{ attrParty: '', royalty: '', attPartyAddress: '' }]
     },
   })
 
@@ -42,7 +44,6 @@ const NewQuote = () => {
 
 
   const onSubmit = (values, sessState) => {
-
     (async () => {
       const { data, error } = await supabase
       .from('Job')
@@ -64,6 +65,9 @@ const NewQuote = () => {
       {
         console.log('error updating:'+ error);
       }
+
+      console.log(values)
+
       //.eq('address->postcode', 90210)
     })(); 
 // sharedState.job.share_code
@@ -89,6 +93,7 @@ const NewQuote = () => {
             register={register}
             trigger={trigger}
             watch={watch}
+            control={control}
           />
           <ThirdStepQuote job={j} register={register} trigger={trigger} />
           <ShareStep job={j} register={register} trigger={trigger} />

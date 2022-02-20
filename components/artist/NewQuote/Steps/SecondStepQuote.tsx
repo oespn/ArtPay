@@ -7,18 +7,47 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './SecondStepQuoteStyles'
+import { useFieldArray } from "react-hook-form";
 
 // Exports
 const Switch = StyledSwitch
 const SwitchThumb = StyledThumb
 
-const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
+const party = {
+  attrParty: '',
+  royalty: '',
+  attPartyAddress: ''
+}
+
+type FormValues = {
+  Job_party: {
+    attrParty: string;
+    royalty: string;
+    attPartyAddress: string;
+  }[];
+};
+
+
+const SecondStepQuote = ({ register, trigger, watch, control  }: StepProps) => {
   const watchLegal = watch('legalAssignment')
   const [isDerivateWork, setIsDerivateWork] = useState(false)
+
+  const { fields, append, remove } = useFieldArray({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: "Job_party", // unique name for your Field Array
+  });
 
   const handleSwitch = (value) => {
     setIsDerivateWork(value)
   }
+
+  const handelAddParty = () => {
+    append({ ...party });
+  }
+
+  const handelRemove = (index) => {
+    remove(index);
+  };
 
   return (
     <div>
@@ -97,29 +126,50 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
 
       {isDerivateWork && (
         <div className="overflow-hidden mb-7">
-          <div className="flex gap-2">
-            <input
-              {...register('attrParty', { required: true })}
-              className="w-7/12 shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
-              placeholder="Attribute party #1"
-            />
-            <label className="flex items-center w-5/12 gap-2" htmlFor="royalty">
-              <span className="whitespace-pre">% royalty</span>
-              <input
-                {...register('royalty', { required: true })}
-                className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
-                type="text"
-                placeholder="none"
-              />
-            </label>
-          </div>
+          {fields.map((field: any, index: number) => (
+            <div key={field.id} className="mb-2">
+              <div className="flex gap-2">
+                <input
+                  defaultValue={`${field.attrParty}`}
+                  {...register(`Job_party.${index}.attrParty` as const, { required: true })}
+                  className="w-7/12 shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
+                  placeholder={`Attribute party #${index + 1}`
+                  }
+                />
+                <label className="flex items-center w-5/12 gap-2" htmlFor="royalty">
+                  <span className="whitespace-pre">% royalty</span>
+                  <input
+                    defaultValue={`${field.royalty}`}
+                    {...register(`Job_party.${index}.royalty` as const, { required: true })}
+                    className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white"
+                    type="text"
+                    placeholder="none"
+                  />
+                </label>
+              </div>
+              <div className="w-full mt-2">
+                <input
+                  defaultValue={`${field.attPartyAddress}`}
+                  {...register(`Job_party.${index}.attPartyAddress` as const, { required: true })}
+                  type="text"
+                  className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white w-full"
+                  placeholder={`Attribute party #${index + 1} wallet address`}
+                />
+              </div>
+              {
+                index > 0 && (
+                  <div className="w-full text-right mt-2">
+                    <button className="px-3 rounded-sm py-1 bg-red-600 text-white font-medium" type="button" onClick={() => {handelRemove(index)}}>
+                      DELETE
+                    </button>
+                  </div>
+                )
+              }
+
+            </div>
+          ))}
           <div className="w-full mt-2">
-            <input
-              {...register('attPartyAddress', { required: true })}
-              type="text"
-              className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-1 rounded-sm bg-white w-full"
-              placeholder="Attribute party #1 wallet address"
-            />
+            <button onClick={handelAddParty} className="underline underline-offset-1">Add Party</button>
           </div>
         </div>
       )}
