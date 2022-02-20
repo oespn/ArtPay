@@ -5,6 +5,8 @@ import FinalStepUpdate from './Steps/FinalStepUpdate'
 import YourDeliverable from './Steps/YourDeliverable'
 import ReceiveQuote from './Steps/ReceiveQuote'
 import FundEscrow from './Steps/FundEscrow'
+import { useState, useEffect } from 'react'
+import { supabase } from '../../../supabaseClient'
 //import SecondStepUpdate from './Steps/SecondStepUpdate'
 //import ThirdStepUpdate from './Steps/ThirdStepUpdate'
 
@@ -80,18 +82,48 @@ const ReviewUpdate = () => {
     setMessage(`Escrow created! Id: ${escrowId}`);
   }
 
+
+  const [jobs, setJobs] = useState([0]);
+
+  useEffect(() => {
+       
+    (async () => {
+        const { data, error } = await supabase
+        .from('Job')
+        .select()
+        //.match({id: 1})
+        .match({share_code: 'gendz8j3'})
+        //match on share_code
+
+        if (data) {
+            setJobs([...data]);
+        }
+        else {
+          console.log('error loading:'+ error);
+        }
+    })();
+
+  }, [setJobs])
+
+
+  console.log(jobs);
+  let j = jobs.find(e => true);
+
+  //j = job;
+  console.log(j);
+
   return (
     <section className="px-5 mt-3 text-darky">
-      <h2 className="text-2xl font-bold mb-5">[Job Name]</h2>
+      <h2 className="text-2xl font-bold mb-5">{j['title']} job <small>/{j['share_code']}</small></h2>
       <div className="mt-3 flex justify-end">[expiry date]</div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wizard startIndex={pageId}>
-          <ReceiveQuote register={register} trigger={trigger} />
-          <FundEscrow register={register} trigger={trigger} />
-          <FirstStepUpdate register={register} trigger={trigger} />
-          <FinalStepUpdate register={register} trigger={trigger} />
-          <YourDeliverable register={register} trigger={trigger} />
+          <ReceiveQuote job={j} register={register} trigger={trigger} />
+          <FundEscrow job={j} register={register} trigger={trigger} />
+          <FirstStepUpdate job={j} register={register} trigger={trigger} />
+          <FinalStepUpdate job={j} register={register} trigger={trigger} />
+          <YourDeliverable job={j} register={register} trigger={trigger} />
         </Wizard>
       </form>
 

@@ -5,17 +5,19 @@ import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './UpdateStyles'
 import ProjectRequirements from '../../../ProjectRequirements'
 
+
+
 // Exports
 const Switch = StyledSwitch
 const SwitchThumb = StyledThumb
 
-const ReceiveQuote = ({ register, trigger }: StepProps) => {
+const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
   const [isProceed, setIsProceed] = useState(false)
+
 
   const handleSwitch = (value) => {
     setIsProceed(value)
   }
-
 
   return (
     <div>
@@ -36,8 +38,7 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
 
       <label className="flex flex-col mb-5">
         <div className="flex justify-between px-0 py-2 deliveryBox">
-
-        <ProjectRequirements/>
+        <ProjectRequirements job={job}/>
 
         </div>
       </label>
@@ -85,10 +86,9 @@ const ReceiveQuote = ({ register, trigger }: StepProps) => {
           Reject
         </button>
 
-        <button type="submit" className="px-3 rounded-sm py-1 bg-primary text-white font-medium">
+        <button type="submit" className={`px-3 rounded-sm py-1 bg-primary text-white font-medium ml-1`} disabled={!isProceed}>
           Continue
         </button>
-        
       </div>    
     </div>
 

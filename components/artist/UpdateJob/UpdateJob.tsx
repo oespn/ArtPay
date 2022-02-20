@@ -9,7 +9,7 @@ import { initNear, loadContract } from '../../../context/utils'
 
 //TODO: Set Modal View (no Header) with X in top right to close view. 
 
-const UpdateJob = (option) => {
+const UpdateJob = ( option ) => {
 
   const sessionState = useAppContext();
   const [message, setMessage] = useState('');
@@ -56,8 +56,10 @@ const UpdateJob = (option) => {
   let user_name = sessionState.user_name;
   let job_title = sessionState.job_title;
 
-  console.log('UserState.user_name:'+user_name);
-  console.log('UserState.job_title:'+job_title);
+  var job = sessionState.job;
+
+  //console.log('UserState.user_name:'+job.user_name);
+  console.log('UserState.job_title:'+job.title);
   console.log('Option: '+option.option);
 
   const {
@@ -76,6 +78,7 @@ const UpdateJob = (option) => {
 
   const onSubmit = async (data) => {
     console.log(data);
+
     sessionState.job_title = data.updateMessage;
 
     const { near, wallet } = await initNear();
@@ -97,20 +100,24 @@ const UpdateJob = (option) => {
     );
     setMessage(`Checked in. See id ${checkinId}`);
 
+
+    //sessionState.job_title = data.updateMessage;
+//TODO:DB:POST to JOB_CHECKIN table
+
   }
 
-  console.log(watch("updateMessage"));
+  //console.log(watch("updateMessage"));
         
 
   return (
     <section className="px-3 mt-3 text-darky">
     <div>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h3 className="text-xl font-medium mb-5">[ProjectName: {sessionState.job_title}]</h3>
+      <h3 className="text-xl font-medium mb-5">{job.title}</h3>
 
       <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Project Requirements</span>
-        <p>Needed?</p>
+        <p>{job.description}</p>
       </label>
 
       <label className="flex flex-col mb-5">

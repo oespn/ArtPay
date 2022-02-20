@@ -7,7 +7,9 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './SecondStepQuoteStyles'
+
 import { useAppContext } from '../../../../context/state'
+import Link from 'next/link'
 
 // Exports
 const Switch = StyledSwitch
@@ -129,7 +131,12 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
               placeholder="Attribute party #1 wallet address"
             />
           </div>
+
+          <div className="gap-2 m-2"> 
+              <span className="text-sm underline">Add Party</span>
+          </div>
         </div>
+        
       )}
 
       <NewQuoteButtonSteps trigger={trigger} />
