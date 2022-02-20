@@ -14,8 +14,6 @@ const SwitchThumb = StyledThumb
 const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
   const [isProceed, setIsProceed] = useState(false)
 
-  console.log('rec quote job:'+job['title']);
-
 
   const handleSwitch = (value) => {
     setIsProceed(value)
@@ -44,7 +42,6 @@ const ReceiveQuote = ({ register, trigger, job }: StepProps) => {
 
       <label className="flex flex-col mb-5">
         <div className="flex justify-between px-0 py-2 deliveryBox">
-        {job.title}
         <ProjectRequirements job={job}/>
 
         </div>

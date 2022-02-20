@@ -8,7 +8,7 @@ const ProjectRequirements = ({job}) => {
 
             <div className="mb-1">
             <p className="font-medium">Project</p>
-            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make {job['title']} for the owner of the accepting wallet address.</p>
+            <p>I <span className="text-bold">[ArtistName]</span> (Contractor) will make {job['title']||'unknown'} for the owner of the accepting wallet address.</p>
             </div>
 
             <div className="mb-1">

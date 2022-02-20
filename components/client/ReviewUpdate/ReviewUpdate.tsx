@@ -58,20 +58,20 @@ const ReviewUpdate = () => {
 
         if (data) {
             setJobs([...data]);
-            //onsole.log(jobs.length)
         }
     })();
 
   }, [setJobs])
 
   console.log(jobs);
-  let j = jobs.find(e=>true);
+  let j = jobs.find(e => 1);
+
+  //j = job;
   console.log(j);
-  
 
   return (
     <section className="px-5 mt-3 text-darky">
-      <h2 className="text-2xl font-bold mb-5">[Job Name]</h2>
+      <h2 className="text-2xl font-bold mb-5">{j['title']} job <small>/{j['share_code']}</small></h2>
       <div className="mt-3 flex justify-end">[expiry date]</div>
 
       <form onSubmit={handleSubmit(onSubmit)}>

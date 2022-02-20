@@ -29,10 +29,10 @@ export function AppWrapper({ children }) {
     }
   };
 
-  let base36id = Date().value;
+  let base36id = Math.round((Math.floor (new Date()) / Math.random(100)) * Math.random(100));
   sharedState.job.share_code = base36id;
 
-  console.log('jobId:'+base36id);
+  console.log('jobId: '+base36id+','+base36id.toString(36));
 
 /* DB Requirements 
 //TODO Determine / minimise what IDs & Strings need to be kept in Context.

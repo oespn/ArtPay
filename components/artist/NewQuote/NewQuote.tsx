@@ -6,6 +6,8 @@ import SecondStepQuote from './Steps/SecondStepQuote'
 import ThirdStepQuote from './Steps/ThirdStepQuote'
 import ShareStep from './Steps/ShareStep'
 import { useAppContext } from '../../../context/state'
+import { useState, useEffect } from 'react'
+import { supabase } from '../../../supabaseClient'
 
 const NewQuote = () => {
   const {
@@ -22,8 +24,46 @@ const NewQuote = () => {
 
   const sessionState = useAppContext();
 
-  const onSubmit = (data) => {
-    console.log(">> Data.title title should have a value:"+ data.title); // IT WORKED!
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+       
+    (async () => {
+        const { data, error } = await supabase
+        .from('Job')
+        .select()
+
+        if (data) {
+            setJobs([...data]);
+        }
+    })();
+
+  }, [setJobs])
+
+
+  const onSubmit = (values, sessState) => {
+
+    (async () => {
+      const { data, error } = await supabase
+      .from('job')
+      .update(values)
+      .match({ id: 1 });
+      //.eq( 'id', 1 );
+
+      if (data) {
+        setJobs([...data]);
+      }
+      else
+      {
+        console.log('error updating:'+ error);
+      }
+      //.eq('address->postcode', 90210)
+    })(); 
+
+    //sessState.sharedState.job = values;
+    console.log(">> Data.title title should have a value:"+ values.title); 
+    console.log(">> Data.title title should have a value:"+ values.title); // IT WORKED!
+    console.log('Data now:'+ values);
 //TODO:DB: Append row in JOB table from sessionState.job
   }
 
