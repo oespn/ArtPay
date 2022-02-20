@@ -23,7 +23,7 @@ const NewQuote = () => {
   })
 
   const sessionState = useAppContext();
-
+  
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -72,6 +72,12 @@ const NewQuote = () => {
     console.log(">> Data.title title should have a value:"+ values.title); // IT WORKED!
     console.log('Data now:'+ values);
 //TODO:DB: Append row in JOB table from sessionState.job
+    console.log(sessionState.job);
+    //TODO:DB: Append row in JOB table from sessionState.job
+    
+    console.log(">> Data.title title should have a value:"+ data.title); // IT WORKED!
+    //TODO:DB: Append row in JOB table from sessionState.job
+
   }
 
   let j = sessionState.job;

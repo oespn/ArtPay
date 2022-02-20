@@ -10,6 +10,11 @@ import { AiOutlineEllipsis } from 'react-icons/ai'
 import MintOffer from './MintOffer'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+import { useState, useEffect } from 'react'
+import { useAppContext } from '../../context/state'
+import { initNear, loadContract } from '../../context/utils'
 
 import { useAppContext } from '../../context/state'
 import { useState, useEffect } from 'react'
@@ -17,9 +22,47 @@ import { supabase } from '../../supabaseClient'
 
 const DashboardArtist = () => {
 
-
   const sessionState = useAppContext();
+  const router = useRouter()
 
+  const [escrows, setEscrows] = useState([
+    {
+      client: "",
+      escrow_id: 0,
+      title: "Loading",
+      description: "...",
+      contractor: "...",
+      locked_amount: "...",
+      escrow_state: "...",
+    }
+  ]);
+
+  useEffect(() => {
+    /* initalise near api here and store in AppContext */ 
+    const init = async () => {
+      const { near, wallet } = await initNear();
+      sessionState.near = near;
+      sessionState.wallet = wallet;
+
+      console.log(sessionState.wallet);
+
+      if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
+        const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
+        setEscrows(await contract.get_escrows_as_contractor({}));
+      }
+    }
+
+    init();
+  }, []);
+
+
+  const redirect = (escrowClient, escrowId, type) => {
+    router.push(`/update-job/${type}?client=${escrowClient}&id=${escrowId}`); // required
+  }
+
+
+  // DB source
+ 
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -37,6 +80,8 @@ const DashboardArtist = () => {
   }, [setJobs])
 
   sessionState.job = jobs.find(e=>true);
+
+  const isUseDB = 0;
 
 
   return (
@@ -64,6 +109,63 @@ const DashboardArtist = () => {
         </h2>
       </div>
 
+      if (!isUseDB)
+      {
+        escrows.map((escrow, index) => {
+          return (
+            <div key={index} className="shadow-md px-3 py-2 mb-2 bg-white">
+              <div className="flex justify-between text-lg mb-2">
+                <h3>{escrow.title}</h3>
+                <h3>{escrow.contractor}</h3>
+
+                <button>
+                  <AiOutlineEllipsis className="text-xl" />
+                </button>
+              </div>
+              <p className="tracking-tight">
+                {escrow.description}
+              </p>
+              <p className="tracking-tight">
+                PROGRESS: {escrow.escrow_state}
+              </p>
+              <div className="mt-4 flex justify-between">
+                <div className="flex items-center gap-2">
+                  {/* <span className="mx-1">
+                    <Image
+                      src="/images/julian.jpg"
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                  </span> */}
+                  <p>
+                    <span className="text-xs">NEAR</span>
+                    <b className="font-bold">{` $${escrow.locked_amount}`}</b>
+                  </p>
+                </div>
+                <div className="flex gap-2 text-lg">
+                <button 
+                    onClick={() => redirect(escrow.client, escrow.escrow_id, "draft")}
+                    className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                        <BsFillPencilFill className="" />
+                    </button>
+                  <button className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                    <BsFillChatFill className="" />
+                  </button>
+                    <button 
+                      onClick={() => redirect(escrow.client, escrow.escrow_id, "final")}
+                      className="border border-gray-300 shadow-sm py-2 px-2 rounded-sm">
+                      <BsCheck2 className="" />
+                    </button>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }      
+    }
+    else
+    {
       <div className="shadow-md px-3 py-2 bg-white">
         <div className="flex justify-between text-lg mb-2">
           <h3>NFT headshot sketch for surfie</h3>
@@ -106,6 +208,7 @@ const DashboardArtist = () => {
           </div>
         </div>
       </div>
+    }
 
       <div className="mb-2">
         <h2 className="flex items-center gap-2 font-medium text-xl mt-7">

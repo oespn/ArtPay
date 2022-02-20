@@ -7,9 +7,7 @@ import { StepProps } from '../NewQuoteTypes'
 import QuoteSteps from '../NewQuoteNumberSteps'
 import { useState } from 'react'
 import { StyledSwitch, StyledThumb } from './SecondStepQuoteStyles'
-
 import { useAppContext } from '../../../../context/state'
-import Link from 'next/link'
 
 // Exports
 const Switch = StyledSwitch
@@ -25,7 +23,10 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
     setIsDerivateWork(value)
   }
 
-  const setLicenceType = val => sessionState.job.lic_type = val;
+  const setCopyright = val => sessionState.newNFT.copyright = val;
+  const setRightAssign = val => {
+    sessionState.newNFT.rightAssign = val.split('-').join('').toUpperCase();
+  }
 
 
   return (
@@ -35,16 +36,26 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
       <h3 className="text-xl font-medium mb-5">Who owns the rights?</h3>
 
       <label className="flex flex-col mb-5">
+        <span className="font-medium mb-2">Copyright Statement</span>
+        <input
+          {...register('copyright', { required: true })}
+          type="text"
+          onChange={e => setCopyright(e.target.value)}
+          placeholder="Copyright © 2022 ArtPay all rights reserved. See URL for more information."
+          className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm"
+        />
+      </label>
+
+      <label className="flex flex-col mb-5">
         <span className="font-medium mb-2">Legal assignment</span>
         <div className="relative w-full">
           <select
             {...register('legalAssignment', { required: true })}
-            defaultValue="CC0"
-            onChange={e => setLicenceType(e.target.value)}
+            onChange={e => setRightAssign(e.target.value)}
             className="shadow-sm shadow-gray-300 border-gray-100 px-4 py-2 rounded-sm bg-white w-full"
           >
             {legalData.map((item) => (
-              <option key={item.id} value={item.name}>
+              <option key={item.id} value={item.code}>
                 {item.name}
               </option>
             ))}
@@ -52,6 +63,7 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
           <HiOutlineSelector className="absolute right-2 bottom-2 text-2xl" />
         </div>
       </label>
+
 
       {legalData.map((item) => (
         <div
@@ -131,12 +143,7 @@ const SecondStepQuote = ({ register, trigger, watch }: StepProps) => {
               placeholder="Attribute party #1 wallet address"
             />
           </div>
-
-          <div className="gap-2 m-2"> 
-              <span className="text-sm underline">Add Party</span>
-          </div>
         </div>
-        
       )}
 
       <NewQuoteButtonSteps trigger={trigger} />
