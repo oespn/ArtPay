@@ -10,7 +10,13 @@ import { supabase } from '../../../supabaseClient'
 //import SecondStepUpdate from './Steps/SecondStepUpdate'
 //import ThirdStepUpdate from './Steps/ThirdStepUpdate'
 
+import { useAppContext } from '../../../context/state'
+import { initNear, loadContract } from '../../../context/utils'
+
+
 const ReviewUpdate = () => {
+  const sessionState = useAppContext();
+  const [message, setMessage] = useState('')
   const {
     register,
     trigger,
@@ -29,21 +35,51 @@ const ReviewUpdate = () => {
   //TODO: read job matching query.params.share_code from database
   const job = {
     id: 0,
+    contractor: "artpay.testnet",
     title: "Job title",
     description: "Description",
     lic_type: "C00",
-    job_type: "NFT",
+    job_type: "NFT", 
     expiry: 0,
     created: 0,
     created_by_userId: 0,
-    share_code: "abb-gta"
+    share_code: "abb-gta",
+
+    locked_amount: 0,
+    requirement: "Requirement Statements",
+
+    license_code: "FULL",  // Store short code abbreviations eg: 'by-nc-sa'
+    license_desc: "Licence description",  // Human readable
+    license_url: "Statment or contract on IPFS", // link to contract (maybe HTTPS or IPFS address) 
   };
 
   //TODO: Reject show pop-up: contact the artist.
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Submit and open wallet: "+ job.title);
-  //TODO:SMC: Append ESCROWs table
+    //TODO:SMC: Append ESCROWs table
+    const { near, wallet } = await initNear();
+    sessionState.near = near;
+    sessionState.wallet = wallet;
+
+    setMessage(`Creating Job ...`);
+    const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
+    const escrowId = await contract.create_new_escrow(
+      {
+        contractor: job.contractor,
+        title: job.title,
+        escrow_type: job.job_type,
+        description: job.description,
+        timestamp: job.expiry,
+
+        requirement: job.requirement,
+
+        license_code: job.license_code,
+        license_desc: job.license_desc,
+        license_url: job.license_url,
+      }, sessionState.MAX_GAS, job.locked_amount 
+    );
+    setMessage(`Escrow created! Id: ${escrowId}`);
   }
 
 
@@ -90,6 +126,8 @@ const ReviewUpdate = () => {
           <YourDeliverable job={j} register={register} trigger={trigger} />
         </Wizard>
       </form>
+
+      <div>{message}</div>
     </section>
   )
 }
