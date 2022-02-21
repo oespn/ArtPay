@@ -48,7 +48,7 @@ const DashboardArtist = () => {
 
       if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
         const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
-        setEscrows(await contract.get_escrows_as_contractor({}));
+        setEscrows(await contract.get_escrows_as_contractor({ account_id: sessionState.wallet.getAccountId() }));
       }
     }
 
