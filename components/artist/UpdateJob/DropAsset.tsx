@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { NFTStorage } from 'nft.storage'
 
+const client = new NFTStorage({ token: process.env.NFT_STORAGE_KEY })
 const thumbsContainer = {
   display: 'flex',
   flexDirection: 'row',
@@ -32,13 +34,27 @@ const img = {
   height: '100%'
 };
 
-
 //DONE: Implement preview of image once uploaded
 //TODO: Complete API approach to IPFS upload
 
 const DropAsset = () => {
 
     const [files, setFiles] = useState([]);
+    const [status, setStatus] = useState('');
+    const [isUpload, setIsUpload] = useState(false);
+
+    const uploadNFTStorage = async(files: File[]) => {
+      setStatus('Uploading to nft.storage...')
+      setIsUpload(true)
+      const metadata = await client.store({
+        name: files[0].name,
+        description: files[0].name,
+        image: files[0],
+      })
+      setStatus(`Upload complete! Minting token with metadata URI: ${metadata.url}`);
+      setIsUpload(false)
+      console.log(metadata.url)
+    }
 
     const {getRootProps, getInputProps} = useDropzone({
       accept: 'image/*',
@@ -49,6 +65,7 @@ const DropAsset = () => {
             })
         ));
         console.log(acceptedFiles);
+        uploadNFTStorage([...acceptedFiles])
         //const nftStored = async() => { uploadToStorage(acceptedFiles[0]); }
       }
     })
@@ -72,24 +89,34 @@ const DropAsset = () => {
       )
     );
   
-    // useEffect(() => {
-    //   // Make sure to revoke the data uris to avoid memory leaks
-    //   files.forEach(file => URL.revokeObjectURL(file.preview));
-    // }, [files]);
+    useEffect(() => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      return () => {
+        files.forEach(file => URL.revokeObjectURL(file.preview));
+      }
+    }, [files]);
   
     return (
       <section className="container">
-        <div {...getRootProps({className: 'dropzone', onClick: evt => evt.preventDefault()})}>
-          <input {...getInputProps()} />
-          {
-            files.length === 0 && <p>Drag &amp; drop some files here, or click to select files</p>         
-          }
+        <div> 
+          <p className="break-words">{status}</p>
+          <span>
+          </span>
         </div>
-        <div >
-          {thumbs}
-        </div>
-        <ul className="text-sm">{fileList}</ul>
-        
+        {!isUpload && 
+          <div>
+            <div {...getRootProps({className: 'dropzone', onClick: evt => evt.preventDefault()})}>
+              <input {...getInputProps()} />
+              {
+                files.length === 0 && <p>Drag &amp; drop some files here, or click to select files</p>         
+              }
+            </div>
+            <div >
+              {thumbs}
+            </div>
+            <ul className="text-sm">{fileList}</ul>
+          </div>
+        }
       </section>
     )
   
