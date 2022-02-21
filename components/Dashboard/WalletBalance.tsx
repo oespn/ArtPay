@@ -11,7 +11,7 @@ const WalletBalance = ({ balance }) =>
   
     var walletUrl = 'http://wallet.near.org/';
     var walletName = sessionState.wallet && sessionState.wallet.getAccountId();
-    if (walletName.includes('.testnet'))
+    if (walletName && walletName.indexOf(".testnet") !== -1)
     {
         walletUrl = 'http://wallet.testnet.near.org/';
     }

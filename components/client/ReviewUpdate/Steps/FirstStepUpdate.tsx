@@ -20,7 +20,7 @@ const FirstStepUpdate = ({ register, trigger }: StepProps) => {
       <label className="flex flex-col mb-5">
         <div className="flex justify-between px-5 py-2 deliveryBox">
           <img
-            src="/images/logo.png"
+            src="/images/llama_192x.png"
             alt="Artwork update"
             className="imgFill"
           />

@@ -229,7 +229,7 @@ const DashboardArtist = () => {
           </span>
         </h2>
         <p className="tracking-tight text-slate-400 text-sm">Jobs waiting for approval</p>
-
+{/*
         {jobs.map(j => (
               <div className="shadow-md px-3 py-2 bg-white mt-2" key={j.id}>
                 <div className="flex justify-between text-lg mb-2">
@@ -257,7 +257,9 @@ const DashboardArtist = () => {
                   </div>
                 </div>
               </div>
-        ))}
+        ))
+        
+        }*/}
 
       </div>
     </section>

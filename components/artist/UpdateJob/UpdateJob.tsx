@@ -26,12 +26,12 @@ const UpdateJob = ( option ) => {
 
       if (sessionState.wallet && sessionState.wallet.isSignedIn()) {
         const contract: any = loadContract(sessionState.near, sessionState.wallet, "escrow")
-        setCheckin(await contract.get_escrow_checkins_list({ 
-          client: sessionState.updateJob.client, 
-          contractor: sessionState.wallet.getAccountId(), 
-          id: sessionState.updateJob.id 
-          })
-        );
+        // setCheckin(await contract.get_escrow_checkins_list({ 
+        //   client: sessionState.updateJob.client, 
+        //   contractor: sessionState.wallet.getAccountId(), 
+        //   id: sessionState.updateJob.id 
+        //   })
+        // );
       }
     }
 
@@ -148,12 +148,6 @@ const UpdateJob = ( option ) => {
       <label className="flex flex-col mb-5">
       <div className="flex justify-between px-5 py-2 deliveryBox" >
         <DropAsset />
-        {/* <img 
-                src='/images/logo.png'
-                alt="Artwork update"
-                className="imgFill"
-              /> */}
-
       </div>
       </label>
 
@@ -164,25 +158,25 @@ const UpdateJob = ( option ) => {
       </div>
 
       {
-        checkin.length === 0 
-        ?
-        <div>Retrieving Checkins for Job ...</div>
-        :
-        checkin.map((checkin, index) => {
-          return(
-            <div key={index}>
-              <div>
-              {checkin.media_url}
-              </div>
-              <div>
-              {checkin.update_type}
-              </div>
-              <div>
-              {checkin.timestamp}
-              </div>
-            </div>
-          )
-        })
+        // checkin.length === 0 
+        // ?
+        // <div>Retrieving Checkins for Job ...</div>
+        // :
+        // checkin.map((checkin, index) => {
+        //   return(
+        //     <div key={index}>
+        //       <div>
+        //       {checkin.media_url}
+        //       </div>
+        //       <div>
+        //       {checkin.update_type}
+        //       </div>
+        //       <div>
+        //       {checkin.timestamp}
+        //       </div>
+        //     </div>
+        //   )
+        // })
       }
       <div>{message}</div>
 

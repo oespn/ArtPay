@@ -13,7 +13,7 @@ const Logo = ({ size }: Props) => {
       <div className="rounded-full" style={{ background: "#E6D7E9" }}>
         <div className={"relative " + size}>
           <Image
-            src="/images/logo.png"
+            src="/images/llama_192x.png"
             layout="fill"
             alt="logo"
             className="w-full h-full object-cover"
