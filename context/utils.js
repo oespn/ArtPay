@@ -9,7 +9,7 @@ const abi = {
     },
     escrow: {
       contractAddr: "escrow.artpay.testnet",
-      viewMethods: [],
+      viewMethods: ["get_escrows_as_client", "get_escrows_as_contractor"],
       changeMethods: [
           "release_escrow", 
           "contractor_approval",
@@ -19,8 +19,8 @@ const abi = {
           "take_my_money",
           "get_escrow_checkin",
           "get_escrow_checkins_list",
-          "get_escrows_as_contractor",
-          "get_escrows_as_client",
+          // "get_escrows_as_contractor",
+          // "get_escrows_as_client",
           "set_nft_deliverable"],
     }
 }
